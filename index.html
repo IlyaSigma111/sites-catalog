@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Илья Sigma</title>
+<title>Сайты / Илья</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23ffd700'/><text x='50' y='74' font-size='70' font-weight='900' fill='%230a0a12' text-anchor='middle' font-family='system-ui'>И</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;scroll-snap-type:y proximity;scroll-padding-top:80px;}
+html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;background:#07070d;color:#f1f5f9;overflow-x:hidden;}
 
 .cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:#ffd700;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,opacity 0.2s;opacity:0;box-shadow:0 0 20px rgba(255,215,0,0.3);}
@@ -31,7 +31,8 @@ nav{
 }
 nav .logo{
   font-size:24px;font-weight:900;color:#ffd700;letter-spacing:-0.5px;
-  text-decoration:none;
+  text-decoration:none;width:40px;height:40px;border-radius:12px;
+  background:#ffd700;color:#0a0a12;display:flex;align-items:center;justify-content:center;
 }
 nav .logo span{color:#f1f5f9;font-weight:200;}
 nav .nav-links{display:flex;gap:32px;}
@@ -293,13 +294,35 @@ nav .nav-links a:hover::after{width:100%;}
 }
 .reveal{opacity:0;transform:translateY(32px);transition:all 0.8s cubic-bezier(0.23,1,0.32,1);}
 .reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ─── SPARKLES ─── */
+.sparkle{position:fixed;width:4px;height:4px;border-radius:50%;background:#ffd700;pointer-events:none;z-index:99998;animation:sparkleFade 0.8s ease-out forwards;}
+@keyframes sparkleFade{0%{opacity:1;transform:scale(1);}100%{opacity:0;transform:scale(0) translateY(-40px);}}
+
+/* ─── SHIMMER ─── */
+.shimmer{background-size:200% auto;animation:shimmer 3s linear infinite;}
+@keyframes shimmer{0%{background-position:-200% center;}100%{background-position:200% center;}}
+
+/* ─── CODE BLOCK ─── */
+.modal .code-wrap{margin-top:16px;}
+.modal .code-label{font-size:12px;font-weight:700;color:#ffd700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.modal pre{
+  background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.04);border-radius:12px;
+  padding:16px;font-size:12px;line-height:1.6;color:#94a3b8;overflow-x:auto;
+  font-family:'Fira Code','JetBrains Mono','Cascadia Code',monospace;white-space:pre;tab-size:2;
+}
+.modal pre .tag{color:#ffd700;font-weight:700;font-style:normal;}
+.modal pre .attr{color:#818cf8;}
+.modal pre .str{color:#4ade80;}
+.modal pre .com{color:#475569;font-style:italic;}
+.modal pre .val{color:#22d3ee;}
 </style>
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
 
 <nav>
-  <a href="#" class="logo">Илья<span>Sigma</span></a>
+  <a href="#" class="logo">И</a>
   <div class="nav-links">
     <a href="#">Главная</a>
     <a href="#about">Обо мне</a>
@@ -309,7 +332,7 @@ nav .nav-links a:hover::after{width:100%;}
 </nav>
 
 <!-- HERO -->
-<section class="hero snap-section">
+<section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
@@ -331,7 +354,7 @@ nav .nav-links a:hover::after{width:100%;}
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="snap-section">
+<section id="about">
   <div class="about-wrap reveal">
     <div class="about-avatar">И</div>
     <div class="about-body">
@@ -348,7 +371,7 @@ nav .nav-links a:hover::after{width:100%;}
 </section>
 
 <!-- TEMPLATES -->
-<section id="templates" class="snap-section">
+<section id="templates">
   <div class="section-header reveal">
     <div class="section-label">✦ Шаблоны</div>
     <h2>Что я могу для тебя сделать</h2>
@@ -364,7 +387,7 @@ nav .nav-links a:hover::after{width:100%;}
 </section>
 
 <!-- CONTACTS -->
-<section id="contacts" class="snap-section">
+<section id="contacts">
   <div class="section-header reveal">
     <div class="section-label">✦ На связи</div>
     <h2>Будем на связи</h2>
@@ -423,65 +446,95 @@ nav .nav-links a:hover::after{width:100%;}
 <script>
 const data = [
   {id:1,name:"Лендинг",desc:"Продающий одностраничник.",time:"1 сутки + 15-30 мин",complex:"easy",n:"5-6 блоков",
-    blocks:["Hero с CTA","О продукте","Преимущества","Отзывы","Форма захвата","Футер"]},
+    blocks:["Hero с CTA","О продукте","Преимущества","Отзывы","Форма захвата","Футер"],
+    code:`&lt;section class="hero"&gt;...&lt;/section&gt;\n&lt;section class="product"&gt;...&lt;/section&gt;\n&lt;section class="benefits"&gt;...&lt;/section&gt;\n&lt;section class="reviews"&gt;...&lt;/section&gt;\n&lt;form class="lead"&gt;...&lt;/form&gt;\n&lt;footer&gt;...&lt;/footer&gt;`},
   {id:2,name:"Сайт-визитка",desc:"Представление компании или человека.",time:"1 сутки + 20-40 мин",complex:"easy",n:"5-6 блоков",
-    blocks:["Лого + меню","О себе","Услуги","Портфолио","Контакты","Футер"]},
+    blocks:["Лого + меню","О себе","Услуги","Портфолио","Контакты","Футер"],
+    code:`&lt;nav&gt;&lt;div class="logo"&gt;...&lt;/div&gt;&lt;ul&gt;...&lt;/ul&gt;&lt;/nav&gt;\n&lt;section class="about"&gt;...&lt;/section&gt;\n&lt;section class="services"&gt;...&lt;/section&gt;\n&lt;section class="portfolio"&gt;...&lt;/section&gt;\n&lt;footer&gt;&lt;div class="contacts"&gt;...&lt;/div&gt;&lt;/footer&gt;`},
   {id:3,name:"Портфолио",desc:"Для дизайнеров, фотографов, разработчиков.",time:"1 сутки + 30-60 мин",complex:"medium",n:"6-7 блоков",
-    blocks:["Hero","О себе","Проекты с фильтрацией","Модальные окна","Навыки","Отзывы","Контакты"]},
+    blocks:["Hero","О себе","Проекты с фильтрацией","Модальные окна","Навыки","Отзывы","Контакты"],
+    code:`&lt;section class="hero"&gt;...&lt;/section&gt;\n&lt;section class="about"&gt;...&lt;/section&gt;\n&lt;section class="projects"&gt;\n  &lt;div class="filters"&gt;...&lt;/div&gt;\n  &lt;div class="grid"&gt;...&lt;/div&gt;\n&lt;/section&gt;\n&lt;section class="skills"&gt;...&lt;/section&gt;`},
   {id:4,name:"Блог",desc:"Личный или корпоративный блог.",time:"1 сутки + 1-2 часа",complex:"hard",n:"5-6 блоков",
-    blocks:["Лента постов","Категории","Полная статья","Поиск","Подписка","Комментарии"]},
+    blocks:["Лента постов","Категории","Полная статья","Поиск","Подписка","Комментарии"],
+    code:`&lt;section class="posts"&gt;\n  &lt;article&gt;...&lt;/article&gt;\n  &lt;article&gt;...&lt;/article&gt;\n&lt;/section&gt;\n&lt;aside class="sidebar"&gt;\n  &lt;div class="categories"&gt;...&lt;/div&gt;\n  &lt;div class="search"&gt;...&lt;/div&gt;\n&lt;/aside&gt;`},
   {id:5,name:"Корпоративный сайт",desc:"Полноценный сайт компании.",time:"1 сутки + 1-2 часа",complex:"hard",n:"6-7 страниц",
-    blocks:["Главная","О нас","Услуги","Кейсы","Блог","Контакты","Вакансии"]},
+    blocks:["Главная","О нас","Услуги","Кейсы","Блог","Контакты","Вакансии"],
+    code:`&lt;header&gt;&lt;nav&gt;...&lt;/nav&gt;&lt;/header&gt;\n&lt;main&gt;\n  &lt;section class="about"&gt;...&lt;/section&gt;\n  &lt;section class="services"&gt;...&lt;/section&gt;\n  &lt;section class="cases"&gt;...&lt;/section&gt;\n  &lt;section class="blog"&gt;...&lt;/section&gt;\n&lt;/main&gt;`},
   {id:6,name:"Интернет-магазин",desc:"Каталог, корзина, заказы.",time:"1 сутки + 2-4 часа",complex:"hard",n:"5-6 страниц",
-    blocks:["Каталог с фильтрами","Карточка товара","Корзина","Оформление заказа","Страница спасибо"]},
+    blocks:["Каталог с фильтрами","Карточка товара","Корзина","Оформление заказа","Страница спасибо"],
+    code:`&lt;section class="catalog"&gt;\n  &lt;div class="filters"&gt;...&lt;/div&gt;\n  &lt;div class="products"&gt;...&lt;/div&gt;\n&lt;/section&gt;\n&lt;section class="cart"&gt;...&lt;/section&gt;\n&lt;form class="checkout"&gt;...&lt;/form&gt;`},
   {id:7,name:"Промо / Акция",desc:"Яркий сайт для рекламы.",time:"1 сутки + 20-40 мин",complex:"easy",n:"5 блоков",
-    blocks:["Таймер отсчёта","Анимированный фон","Что получите","Тарифы","Форма"]},
+    blocks:["Таймер отсчёта","Анимированный фон","Что получите","Тарифы","Форма"],
+    code:`&lt;section class="promo"&gt;\n  &lt;div class="timer"&gt;...&lt;/div&gt;\n  &lt;div class="background-anim"&gt;...&lt;/div&gt;\n  &lt;div class="benefits"&gt;...&lt;/div&gt;\n  &lt;div class="pricing"&gt;...&lt;/div&gt;\n  &lt;form&gt;...&lt;/form&gt;\n&lt;/section&gt;`},
   {id:8,name:"Документация / Wiki",desc:"База знаний, инструкции.",time:"1 сутки + 1-2 часа",complex:"hard",n:"4 блока",
-    blocks:["Боковое меню","Поиск","Статья с оглавлением","Тёмная тема"]},
+    blocks:["Боковое меню","Поиск","Статья с оглавлением","Тёмная тема"],
+    code:`&lt;div class="wiki"&gt;\n  &lt;aside class="sidebar"&gt;\n    &lt;input class="search"&gt;\n    &lt;nav&gt;...&lt;/nav&gt;\n  &lt;/aside&gt;\n  &lt;article&gt;\n    &lt;div class="toc"&gt;...&lt;/div&gt;\n    &lt;div class="content"&gt;...&lt;/div&gt;\n  &lt;/article&gt;\n&lt;/div&gt;`},
   {id:9,name:"Telegram-лендинг",desc:"Для раскрутки канала или бота.",time:"1 сутки + 15-25 мин",complex:"easy",n:"5 блоков",
-    blocks:["Hero с названием","О канале","Цифры","Отзывы","Кнопка подписки"]},
+    blocks:["Hero с названием","О канале","Цифры","Отзывы","Кнопка подписки"],
+    code:`&lt;section class="hero"&gt;&lt;h1&gt;...&lt;/h1&gt;&lt;/section&gt;\n&lt;section class="about"&gt;...&lt;/section&gt;\n&lt;section class="stats"&gt;...&lt;/section&gt;\n&lt;section class="reviews"&gt;...&lt;/section&gt;\n&lt;a class="btn-subscribe"&gt;...&lt;/a&gt;`},
   {id:10,name:"Event / Мероприятие",desc:"Конференция, вебинар.",time:"1 сутки + 30-50 мин",complex:"medium",n:"7 блоков",
-    blocks:["Hero с датой","Программа","Спикеры","Расписание","Билеты","Регистрация","FAQ"]},
+    blocks:["Hero с датой","Программа","Спикеры","Расписание","Билеты","Регистрация","FAQ"],
+    code:`&lt;section class="event"&gt;\n  &lt;div class="hero"&gt;&lt;span class="date"&gt;...&lt;/span&gt;&lt;/div&gt;\n  &lt;div class="schedule"&gt;...&lt;/div&gt;\n  &lt;div class="speakers"&gt;...&lt;/div&gt;\n  &lt;div class="tickets"&gt;...&lt;/div&gt;\n  &lt;form class="register"&gt;...&lt;/form&gt;\n&lt;/section&gt;`},
   {id:11,name:"Сайт-каталог",desc:"Каталог с фильтрами и поиском.",time:"1 сутки + 1-2 часа",complex:"hard",n:"5 страниц",
-    blocks:["Категории","Список товаров","Карточка","Поиск","Фильтры"]},
+    blocks:["Категории","Список товаров","Карточка","Поиск","Фильтры"],
+    code:`&lt;section class="catalog"&gt;\n  &lt;input class="search" placeholder="Поиск..."&gt;\n  &lt;div class="categories"&gt;...&lt;/div&gt;\n  &lt;div class="filters"&gt;...&lt;/div&gt;\n  &lt;div class="product-grid"&gt;\n    &lt;div class="card"&gt;...&lt;/div&gt;\n  &lt;/div&gt;\n&lt;/section&gt;`},
   {id:12,name:"Сайт-услуга",desc:"Продвижение одной услуги.",time:"1 сутки + 20-40 мин",complex:"easy",n:"6-7 блоков",
-    blocks:["Hero","Как работаю","Цены","Портфолио","Отзывы","Форма","FAQ"]},
+    blocks:["Hero","Как работаю","Цены","Портфолио","Отзывы","Форма","FAQ"],
+    code:`&lt;section class="hero"&gt;...&lt;/section&gt;\n&lt;section class="process"&gt;...&lt;/section&gt;\n&lt;section class="pricing"&gt;...&lt;/section&gt;\n&lt;section class="portfolio"&gt;...&lt;/section&gt;\n&lt;section class="reviews"&gt;...&lt;/section&gt;\n&lt;form&gt;...&lt;/form&gt;\n&lt;section class="faq"&gt;...&lt;/section&gt;`},
   {id:13,name:"Online CV / Резюме",desc:"Сайт-резюме для работы.",time:"1 сутки + 15-30 мин",complex:"easy",n:"6 блоков",
-    blocks:["Hero","О себе","Опыт","Навыки","Проекты","Контакты"]},
+    blocks:["Hero","О себе","Опыт","Навыки","Проекты","Контакты"],
+    code:`&lt;section class="hero"&gt;\n  &lt;img class="photo"&gt;\n  &lt;h1&gt;Имя&lt;/h1&gt;\n  &lt;p&gt;Должность&lt;/p&gt;\n&lt;/section&gt;\n&lt;section class="experience"&gt;...&lt;/section&gt;\n&lt;section class="skills"&gt;...&lt;/section&gt;`},
   {id:14,name:"Membership",desc:"Контент по подписке.",time:"1 сутки + 1-3 часа",complex:"hard",n:"5 страниц",
-    blocks:["Тарифы","Вход","Личный кабинет","Закрытый контент","FAQ"]},
+    blocks:["Тарифы","Вход","Личный кабинет","Закрытый контент","FAQ"],
+    code:`&lt;section class="pricing"&gt;...&lt;/section&gt;\n&lt;form class="login"&gt;...&lt;/form&gt;\n&lt;section class="dashboard"&gt;\n  &lt;div class="sidebar"&gt;...&lt;/div&gt;\n  &lt;div class="content"&gt;...&lt;/div&gt;\n&lt;/section&gt;`},
   {id:15,name:"Коучинг / Курс",desc:"Лендинг для курса.",time:"1 сутки + 30-50 мин",complex:"medium",n:"7 блоков",
-    blocks:["Hero","Для кого","Программа","Результаты","Цены","Форма","FAQ"]},
+    blocks:["Hero","Для кого","Программа","Результаты","Цены","Форма","FAQ"],
+    code:`&lt;section class="hero"&gt;...&lt;/section&gt;\n&lt;section class="audience"&gt;...&lt;/section&gt;\n&lt;section class="program"&gt;...&lt;/section&gt;\n&lt;section class="results"&gt;...&lt;/section&gt;\n&lt;section class="pricing"&gt;...&lt;/section&gt;\n&lt;form&gt;...&lt;/form&gt;`},
   {id:16,name:"Фриланс-портфолио",desc:"Портфолио с биржами.",time:"1 сутки + 20-40 мин",complex:"easy",n:"6 блоков",
-    blocks:["Статус","Стек","Проекты","Статистика","Отзывы","Ссылки на биржи"]},
+    blocks:["Статус","Стек","Проекты","Статистика","Отзывы","Ссылки на биржи"],
+    code:`&lt;section class="hero"&gt;&lt;span class="status"&gt;...&lt;/span&gt;&lt;/section&gt;\n&lt;section class="stack"&gt;...&lt;/section&gt;\n&lt;section class="projects"&gt;...&lt;/section&gt;\n&lt;section class="stats"&gt;...&lt;/section&gt;\n&lt;section class="reviews"&gt;...&lt;/section&gt;`},
   {id:17,name:"Стартап-лендинг",desc:"Для презентации инвесторам.",time:"1 сутки + 30-50 мин",complex:"medium",n:"8 блоков",
-    blocks:["Метрики","Проблема→Решение","Рынок","Команда","График","Раунд","CTA"]},
+    blocks:["Метрики","Проблема→Решение","Рынок","Команда","График","Раунд","CTA"],
+    code:`&lt;section class="hero"&gt;&lt;div class="metrics"&gt;...&lt;/div&gt;&lt;/section&gt;\n&lt;section class="problem-solution"&gt;...&lt;/section&gt;\n&lt;section class="market"&gt;...&lt;/section&gt;\n&lt;section class="team"&gt;...&lt;/section&gt;\n&lt;section class="roadmap"&gt;...&lt;/section&gt;`},
   {id:18,name:"App-landing",desc:"Продвижение приложения.",time:"1 сутки + 20-40 мин",complex:"medium",n:"5 блоков",
-    blocks:["Мокап телефона","Скриншоты","Функции","Кнопки магазинов","Отзывы"]},
+    blocks:["Мокап телефона","Скриншоты","Функции","Кнопки магазинов","Отзывы"],
+    code:`&lt;section class="hero"&gt;\n  &lt;div class="mockup"&gt;📱&lt;/div&gt;\n  &lt;div class="app-store"&gt;...&lt;/div&gt;\n&lt;/section&gt;\n&lt;section class="screenshots"&gt;...&lt;/section&gt;\n&lt;section class="features"&gt;...&lt;/section&gt;`},
   {id:19,name:"Лендинг для бота",desc:"Сайт для Telegram/Discord бота.",time:"1 сутки + 15-25 мин",complex:"easy",n:"5 блоков",
-    blocks:["Имя бота","Функции","Скриншоты","Как начать","Кнопка запуска"]},
+    blocks:["Имя бота","Функции","Скриншоты","Как начать","Кнопка запуска"],
+    code:`&lt;section class="hero"&gt;&lt;h1&gt;BotName&lt;/h1&gt;&lt;/section&gt;\n&lt;section class="features"&gt;...&lt;/section&gt;\n&lt;section class="screenshots"&gt;...&lt;/section&gt;\n&lt;section class="how-to-start"&gt;...&lt;/section&gt;\n&lt;a class="btn-start"&gt;Запустить&lt;/a&gt;`},
   {id:20,name:"Недвижимость",desc:"Продажа квартиры, дома.",time:"1 сутки + 20-40 мин",complex:"medium",n:"7 блоков",
-    blocks:["Фото+цена","Характеристики","Галерея","Планировка","Форма звонка","Карта"]},
+    blocks:["Фото+цена","Характеристики","Галерея","Планировка","Форма звонка","Карта"],
+    code:`&lt;section class="property"&gt;\n  &lt;div class="gallery"&gt;...&lt;/div&gt;\n  &lt;div class="price"&gt;...&lt;/div&gt;\n  &lt;div class="specs"&gt;...&lt;/div&gt;\n  &lt;div class="floorplan"&gt;...&lt;/div&gt;\n  &lt;form class="callback"&gt;...&lt;/form&gt;\n  &lt;div class="map"&gt;...&lt;/div&gt;\n&lt;/section&gt;`},
   {id:21,name:"Ресторан / Меню",desc:"Сайт кафе с меню.",time:"1 сутки + 30-60 мин",complex:"medium",n:"6-7 блоков",
-    blocks:["Главная","Меню с ценами","О нас","Бронь","Галерея","Отзывы","Карта"]},
+    blocks:["Главная","Меню с ценами","О нас","Бронь","Галерея","Отзывы","Карта"],
+    code:`&lt;header&gt;&lt;nav&gt;...&lt;/nav&gt;&lt;/header&gt;\n&lt;section class="menu"&gt;\n  &lt;div class="category"&gt;...&lt;/div&gt;\n  &lt;div class="item"&gt;...&lt;/div&gt;\n&lt;/section&gt;\n&lt;form class="reservation"&gt;...&lt;/form&gt;`},
   {id:22,name:"Фитнес / Тренер",desc:"Сайт тренера.",time:"1 сутки + 20-40 мин",complex:"medium",n:"6 блоков",
-    blocks:["Hero","О тренере","Программы","Расписание","Результаты","Форма записи"]},
+    blocks:["Hero","О тренере","Программы","Расписание","Результаты","Форма записи"],
+    code:`&lt;section class="hero"&gt;...&lt;/section&gt;\n&lt;section class="about"&gt;...&lt;/section&gt;\n&lt;section class="programs"&gt;...&lt;/section&gt;\n&lt;section class="schedule"&gt;...&lt;/section&gt;\n&lt;section class="results"&gt;...&lt;/section&gt;\n&lt;form class="signup"&gt;...&lt;/form&gt;`},
   {id:23,name:"Салон красоты",desc:"Сайт с прайсом и записью.",time:"1 сутки + 20-50 мин",complex:"medium",n:"7-8 блоков",
-    blocks:["Услуги","Мастера","Портфолио","Прайс","Онлайн-запись","Отзывы","Контакты"]},
+    blocks:["Услуги","Мастера","Портфолио","Прайс","Онлайн-запись","Отзывы","Контакты"],
+    code:`&lt;section class="services"&gt;...&lt;/section&gt;\n&lt;section class="masters"&gt;...&lt;/section&gt;\n&lt;section class="portfolio"&gt;...&lt;/section&gt;\n&lt;section class="price-list"&gt;...&lt;/section&gt;\n&lt;form class="booking"&gt;...&lt;/form&gt;`},
   {id:24,name:"Клиника / Врач",desc:"Сайт медицинского центра.",time:"1 сутки + 30-60 мин",complex:"medium",n:"6-7 страниц",
-    blocks:["Главная","О клинике","Врачи","Услуги","Запись","Контакты"]},
+    blocks:["Главная","О клинике","Врачи","Услуги","Запись","Контакты"],
+    code:`&lt;section class="hero"&gt;...&lt;/section&gt;\n&lt;section class="about"&gt;...&lt;/section&gt;\n&lt;section class="doctors"&gt;...&lt;/section&gt;\n&lt;section class="services"&gt;...&lt;/section&gt;\n&lt;form class="appointment"&gt;...&lt;/form&gt;`},
   {id:25,name:"Digital-агентство",desc:"Сайт агентства.",time:"1 сутки + 30-60 мин",complex:"medium",n:"7-8 страниц",
-    blocks:["Цифры","Услуги","Кейсы","Команда","Отзывы","Блог","Контакты"]},
+    blocks:["Цифры","Услуги","Кейсы","Команда","Отзывы","Блог","Контакты"],
+    code:`&lt;section class="hero"&gt;&lt;div class="stats"&gt;...&lt;/div&gt;&lt;/section&gt;\n&lt;section class="services"&gt;...&lt;/section&gt;\n&lt;section class="cases"&gt;...&lt;/section&gt;\n&lt;section class="team"&gt;...&lt;/section&gt;\n&lt;section class="reviews"&gt;...&lt;/section&gt;`},
   {id:26,name:"SaaS / Сервис",desc:"Лендинг онлайн-сервиса.",time:"1 сутки + 1-2 часа",complex:"hard",n:"7-8 блоков",
-    blocks:["Hero","Демо","Функции","Как работает","Тарифы","Интеграции","Регистрация"]},
+    blocks:["Hero","Демо","Функции","Как работает","Тарифы","Интеграции","Регистрация"],
+    code:`&lt;section class="hero"&gt;...&lt;/section&gt;\n&lt;section class="demo"&gt;...&lt;/section&gt;\n&lt;section class="features"&gt;...&lt;/section&gt;\n&lt;section class="how-it-works"&gt;...&lt;/section&gt;\n&lt;section class="pricing"&gt;...&lt;/section&gt;\n&lt;form class="signup"&gt;...&lt;/form&gt;`},
   {id:27,name:"Коворкинг",desc:"Сайт коворкинга.",time:"1 сутки + 20-40 мин",complex:"medium",n:"6 блоков",
-    blocks:["Тарифы","Галерея","Удобства","Мероприятия","Бронь","Карта"]},
+    blocks:["Тарифы","Галерея","Удобства","Мероприятия","Бронь","Карта"],
+    code:`&lt;section class="pricing"&gt;...&lt;/section&gt;\n&lt;section class="gallery"&gt;...&lt;/section&gt;\n&lt;section class="amenities"&gt;...&lt;/section&gt;\n&lt;section class="events"&gt;...&lt;/section&gt;\n&lt;form class="booking"&gt;...&lt;/form&gt;\n&lt;div class="map"&gt;...&lt;/div&gt;`},
   {id:28,name:"Туризм",desc:"Сайт туров и путешествий.",time:"1 сутки + 30-60 мин",complex:"medium",n:"6-7 блоков",
-    blocks:["Направления","Страница тура","Календарь","О гиде","Бронь","FAQ"]},
+    blocks:["Направления","Страница тура","Календарь","О гиде","Бронь","FAQ"],
+    code:`&lt;section class="destinations"&gt;...&lt;/section&gt;\n&lt;section class="tour-page"&gt;...&lt;/section&gt;\n&lt;div class="calendar"&gt;...&lt;/div&gt;\n&lt;section class="about-guide"&gt;...&lt;/section&gt;\n&lt;form class="booking"&gt;...&lt;/form&gt;`},
   {id:29,name:"Цифровые товары",desc:"Магазин шаблонов, курсов.",time:"1 сутки + 1-2 часа",complex:"hard",n:"6 страниц",
-    blocks:["Категории","Каталог","Карточка","Корзина","Оформление","Личный кабинет"]},
+    blocks:["Категории","Каталог","Карточка","Корзина","Оформление","Личный кабинет"],
+    code:`&lt;section class="categories"&gt;...&lt;/section&gt;\n&lt;section class="products"&gt;\n  &lt;div class="card"&gt;...&lt;/div&gt;\n  &lt;button class="buy"&gt;...&lt;/button&gt;\n&lt;/section&gt;\n&lt;section class="cart"&gt;...&lt;/section&gt;\n&lt;form class="checkout"&gt;...&lt;/form&gt;`},
   {id:30,name:"Новостной портал",desc:"Новостной сайт.",time:"1 сутки + 2-4 часа",complex:"hard",n:"6-7 страниц",
-    blocks:["Лента новостей","Категории","Полная статья","Поиск","Подписка","Комментарии"]}
+    blocks:["Лента новостей","Категории","Полная статья","Поиск","Подписка","Комментарии"],
+    code:`&lt;header&gt;&lt;nav&gt;...&lt;/nav&gt;&lt;/header&gt;\n&lt;section class="feed"&gt;\n  &lt;article&gt;...&lt;/article&gt;\n  &lt;article&gt;...&lt;/article&gt;\n&lt;/section&gt;\n&lt;aside class="sidebar"&gt;\n  &lt;input class="search"&gt;\n  &lt;div class="subscribe"&gt;...&lt;/div&gt;\n&lt;/aside&gt;`}
 ];
 
 let currentFilter='all',cardObserver;
@@ -525,10 +578,15 @@ function renderGrid(f){
 
 function openModal(id){
   const d=data.find(x=>x.id===id);
+  const f=d.code.split('\\n').map(l=>`<span>${l.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span>`).join('\n');
   document.getElementById('modal-content').innerHTML=`
     <h2>${d.name}</h2>
     <div class="grid">${d.blocks.map(b=>'<div class="item">'+b+'</div>').join('')}</div>
     <div class="info"><span>⏱ ${d.time}</span><span>${d.n}</span></div>
+    <div class="code-wrap">
+      <div class="code-label">📄 Структура</div>
+      <pre>${f}</pre>
+    </div>
   `;
   document.getElementById('modal').classList.add('open');
 }
@@ -553,22 +611,43 @@ document.querySelectorAll('a,button,.card,.contact-card').forEach(el=>{
 function tick(){cx+=(mx-cx)*0.12;cy+=(my-cy)*0.12;cursor.style.left=cx+'px';cursor.style.top=cy+'px';requestAnimationFrame(tick);}
 tick();
 
+/* ─── SPARKLES ─── */
+document.addEventListener('mousemove',e=>{
+  if(Math.random()>0.15)return;
+  const s=document.createElement('div');s.className='sparkle';
+  s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';
+  s.style.width=(2+Math.random()*4)+'px';s.style.height=s.style.width;
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),800);
+});
+
+/* ─── 3D TILT ─── */
+document.querySelectorAll('.card').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5;
+    const y=(e.clientY-r.top)/r.height-0.5;
+    el.style.transform=`translateY(-8px) perspective(800px) rotateX(${y*-6}deg) rotateY(${x*6}deg)`;
+  });
+  el.addEventListener('mouseleave',()=>el.style.transform='');
+});
+
 /* ─── PARALLAX GLOW ─── */
 const glow=document.querySelector('.hero-glow');
 if(glow){
   document.addEventListener('mousemove',e=>{
-    const x=(e.clientX/window.innerWidth-0.5)*30;
-    const y=(e.clientY/window.innerHeight-0.5)*30;
-    glow.style.transform=`translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) scale(1.4)`;
+    const x=(e.clientX/window.innerWidth-0.5)*40;
+    const y=(e.clientY/window.innerHeight-0.5)*40;
+    glow.style.transform=`translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) scale(1.5)`;
   });
 }
 
 /* ─── ACTIVE NAV ─── */
-const sections=document.querySelectorAll('.snap-section');
+const sections=document.querySelectorAll('section[id]');
 const navLinks=document.querySelectorAll('.nav-links a');
-const observer=new IntersectionObserver(e=>{e.forEach(v=>{if(v.isIntersecting){navLinks.forEach(a=>a.style.color='#64748b');const id=v.target.id||'hero';[...navLinks].find(a=>a.getAttribute('href')==='#'+id)&&([...navLinks].find(a=>a.getAttribute('href')==='#'+id).style.color='#f1f5f9');if(!v.target.id)[...navLinks].find(a=>a.getAttribute('href')==='#')&&([...navLinks].find(a=>a.getAttribute('href')==='#').style.color='#f1f5f9');}});},{threshold:0.4});
-document.querySelectorAll('.hero').forEach(el=>{el.id='hero';});
-sections.forEach(el=>observer.observe(el));
+const navObs=new IntersectionObserver(e=>{e.forEach(v=>{if(v.isIntersecting){navLinks.forEach(a=>{a.style.color='#64748b';});const link=[...navLinks].find(a=>a.getAttribute('href')==='#'+v.target.id);if(link)link.style.color='#f1f5f9';}});},{threshold:0.3});
+sections.forEach(el=>navObs.observe(el));
+document.querySelectorAll('.hero').forEach(el=>{el.id='hero';navObs.observe(el);});
 </script>
 </body>
 </html>
