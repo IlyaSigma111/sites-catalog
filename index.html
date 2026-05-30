@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ИЛЬЯКЛАСС — каталог сайтов</title>
+<title>Илья — сайты</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -13,42 +13,31 @@ body{font-family:'Inter',sans-serif;background:#07070d;color:#f1f5f9;overflow-x:
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:#07070d;}
 ::-webkit-scrollbar-thumb{background:rgba(255,215,0,0.15);border-radius:4px;}
-::-webkit-scrollbar-thumb:hover{background:rgba(255,215,0,0.3);}
 
-/* ─── NOISE ─── */
 body::after{
   content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
-  opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat:repeat;background-size:256px;
 }
 
-/* ─── BRAND ─── */
-.brand{display:flex;align-items:center;gap:6px;}
-.brand-ilya{font-size:22px;font-weight:900;background:linear-gradient(135deg,#ffd700,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.5px;}
-.brand-klass{font-size:22px;font-weight:200;color:#00ffff;letter-spacing:2px;}
-.brand-dot{font-size:22px;color:rgba(255,255,255,0.08);font-weight:200;}
-
-/* ─── BLOBS ─── */
 .blob{
   position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;
-  animation:blobFloat 20s ease-in-out infinite;
+  animation:blobFloat 25s ease-in-out infinite;
 }
-.blob-1{width:500px;height:500px;background:rgba(255,215,0,0.04);top:-10%;left:-5%;animation-delay:0s;}
-.blob-2{width:400px;height:400px;background:rgba(99,102,241,0.04);bottom:-5%;right:-3%;animation-delay:-7s;}
-.blob-3{width:300px;height:300px;background:rgba(0,255,255,0.03);top:40%;left:60%;animation-delay:-14s;}
+.blob-1{width:500px;height:500px;background:rgba(255,215,0,0.03);top:-10%;left:-5%;animation-delay:0s;}
+.blob-2{width:400px;height:400px;background:rgba(99,102,241,0.03);bottom:-5%;right:-3%;animation-delay:-8s;}
+.blob-3{width:300px;height:300px;background:rgba(0,255,255,0.02);top:40%;left:60%;animation-delay:-16s;}
 @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(30px,-40px) scale(1.1);}66%{transform:translate(-20px,20px) scale(0.9);}}
 
-/* ─── HERO ─── */
 .hero{
   position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
   background:#07070d;overflow:hidden;
 }
 .hero::before{
   content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 40%,rgba(99,102,241,0.06) 0%,transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 20%,rgba(0,255,255,0.03) 0%,transparent 60%),
-    radial-gradient(ellipse 40% 40% at 20% 80%,rgba(255,215,0,0.02) 0%,transparent 50%);
+  background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(99,102,241,0.05) 0%,transparent 70%),
+             radial-gradient(ellipse 40% 40% at 80% 20%,rgba(0,255,255,0.02) 0%,transparent 60%),
+             radial-gradient(ellipse 40% 40% at 20% 80%,rgba(255,215,0,0.02) 0%,transparent 50%);
   pointer-events:none;
 }
 .hero-grid{
@@ -60,169 +49,134 @@ body::after{
   pointer-events:none;
 }
 .hero-glow{
-  position:absolute;width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,215,0,0.05),transparent 70%);
-  top:20%;left:50%;transform:translate(-50%,-50%);filter:blur(80px);pointer-events:none;
+  position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,215,0,0.04),transparent 70%);
+  top:15%;left:50%;transform:translate(-50%,-50%);filter:blur(80px);pointer-events:none;
   animation:heroGlow 8s ease-in-out infinite;
 }
-@keyframes heroGlow{0%,100%{opacity:0.4;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.8;transform:translate(-50%,-50%) scale(1.4);}}
-.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:780px;}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,0.03);border:1px solid rgba(255,215,0,0.08);
-  border-radius:100px;padding:4px 12px 4px 4px;margin-bottom:24px;
-  backdrop-filter:blur(20px);animation:fadeUp 0.8s ease-out;
+@keyframes heroGlow{0%,100%{opacity:0.3;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.7;transform:translate(-50%,-50%) scale(1.3);}}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:600px;}
+.hero-avatar{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 20px;
+  background:linear-gradient(135deg,#ffd700,#f59e0b);padding:2px;
+  animation:fadeUp 0.8s ease-out;
 }
-.hero-badge .badge-icon{
-  background:linear-gradient(135deg,#ffd700,#f59e0b);color:#0a0a12;
-  border-radius:100px;padding:2px 10px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;
+.hero-avatar-inner{
+  width:100%;height:100%;border-radius:50%;background:#07070d;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;font-weight:900;color:#ffd700;
 }
-.hero-badge span:last-child{font-size:12px;color:#64748b;font-weight:400;padding-right:8px;}
 .hero h1{
-  font-size:clamp(38px,7vw,76px);font-weight:900;line-height:1.02;margin-bottom:18px;
+  font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.1;margin-bottom:8px;
   animation:fadeUp 0.8s ease-out 0.1s both;
 }
-.hero h1 .gold{background:linear-gradient(135deg,#ffd700,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero h1 .white{color:#f1f5f9;}
-.hero h1 .accent{background:linear-gradient(135deg,#818cf8,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-char{display:inline-block;opacity:0;transform:translateY(30px);}
-.hero p{
-  font-size:clamp(15px,1.6vw,17px);color:#64748b;line-height:1.7;margin-bottom:32px;
-  max-width:520px;margin-left:auto;margin-right:auto;
+.hero h1 .gold{background:linear-gradient(135deg,#ffd700,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero .tagline{
+  font-size:15px;color:#64748b;line-height:1.6;margin-bottom:24px;max-width:440px;margin-left:auto;margin-right:auto;
+  animation:fadeUp 0.8s ease-out 0.2s both;
+}
+.hero-links{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
   animation:fadeUp 0.8s ease-out 0.3s both;
 }
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.8s ease-out 0.4s both;}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,#ffd700,#f59e0b);color:#0a0a12;border:none;
-  padding:14px 32px;border-radius:14px;font-size:15px;font-weight:800;
-  cursor:pointer;transition:all 0.3s cubic-bezier(0.23,1,0.32,1);
-  font-family:'Inter',sans-serif;
+.hero-links a{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  color:#e2e8f0;padding:10px 20px;border-radius:12px;font-size:13px;font-weight:600;
+  text-decoration:none;transition:all 0.3s;
 }
-.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 40px rgba(255,215,0,0.25);}
-.btn-primary:active{transform:translateY(0) scale(1);}
-.btn-secondary{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.06);color:#e2e8f0;
-  padding:14px 28px;border-radius:14px;font-size:15px;font-weight:600;
-  cursor:pointer;transition:all 0.3s;font-family:'Inter',sans-serif;
+.hero-links a:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,215,0,0.15);transform:translateY(-2px);}
+.hero-links .primary{
+  background:rgba(255,215,0,0.08);border-color:rgba(255,215,0,0.12);color:#ffd700;
 }
-.btn-secondary:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.12);transform:translateY(-3px);}
+.hero-links .primary:hover{background:rgba(255,215,0,0.12);border-color:rgba(255,215,0,0.2);}
 .scroll-indicator{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:6px;
-  color:rgba(255,215,0,0.2);font-size:10px;letter-spacing:3px;text-transform:uppercase;
-  animation:fadeUp 0.8s ease-out 0.6s both;
+  color:rgba(255,215,0,0.15);font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  animation:fadeUp 0.8s ease-out 0.5s both;
 }
-.scroll-line{width:1px;height:28px;background:linear-gradient(to bottom,rgba(255,215,0,0.2),transparent);animation:scrollLine 2.5s ease-in-out infinite;}
+.scroll-line{width:1px;height:24px;background:linear-gradient(to bottom,rgba(255,215,0,0.15),transparent);animation:scrollLine 2.5s ease-in-out infinite;}
 @keyframes scrollLine{0%,100%{opacity:0.2;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.8);}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 
-/* ─── KINETIC TEXT ─── */
-.hero .word{display:inline-block;opacity:0;transform:translateY(40px);animation:wordIn 0.6s ease-out forwards;}
-@keyframes wordIn{to{opacity:1;transform:translateY(0);}}
-
-/* ─── PARTICLES ─── */
 #particles-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
 
-/* ─── SECTIONS ─── */
-section{position:relative;z-index:1;}
-.section-header{text-align:center;margin-bottom:48px;}
+section{position:relative;z-index:1;padding:60px 0;}
+.section-header{text-align:center;margin-bottom:40px;}
 .section-label{
   display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:#ffd700;margin-bottom:14px;border:1px solid rgba(255,215,0,0.1);
-  padding:5px 14px;border-radius:100px;background:rgba(255,215,0,0.03);
+  color:#ffd700;margin-bottom:12px;border:1px solid rgba(255,215,0,0.08);
+  padding:4px 12px;border-radius:100px;background:rgba(255,215,0,0.03);
 }
 .section-header h2{
-  font-size:clamp(26px,3.5vw,40px);font-weight:800;margin-bottom:10px;line-height:1.15;
+  font-size:clamp(22px,3vw,34px);font-weight:800;margin-bottom:8px;
   background:linear-gradient(135deg,#f1f5f9,#818cf8);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.section-header p{color:#64748b;font-size:14.5px;max-width:460px;margin:0 auto;line-height:1.6;}
+.section-header p{color:#64748b;font-size:14px;max-width:440px;margin:0 auto;line-height:1.6;}
 
-/* ─── NAV ─── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  padding:14px 28px;display:flex;align-items:center;justify-content:space-between;
-  background:rgba(7,7,13,0.6);backdrop-filter:blur(40px);
-  border-bottom:1px solid rgba(255,215,0,0.04);
-}
-.nav-link{color:#64748b;font-size:12px;font-weight:600;text-decoration:none;transition:color 0.3s;letter-spacing:0.3px;}
-.nav-link:hover{color:#ffd700;}
-.nav-link span{transition:transform 0.3s;display:inline-block;}
-.nav-link:hover span{transform:translate(2px,-2px);}
-
-/* ─── FILTERS ─── */
 .filter-bar{
-  display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;
-  padding:5px;background:rgba(255,255,255,0.02);border-radius:12px;
-  border:1px solid rgba(255,255,255,0.04);max-width:460px;
+  display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;
+  padding:4px;background:rgba(255,255,255,0.02);border-radius:10px;
+  border:1px solid rgba(255,255,255,0.04);max-width:400px;
   margin-left:auto;margin-right:auto;backdrop-filter:blur(20px);
 }
 .filter-btn{
-  background:transparent;border:none;color:#64748b;padding:8px 18px;border-radius:8px;
-  font-size:12.5px;font-weight:600;cursor:pointer;transition:all 0.3s;font-family:'Inter',sans-serif;
+  background:transparent;border:none;color:#64748b;padding:7px 16px;border-radius:8px;
+  font-size:12px;font-weight:600;cursor:pointer;transition:all 0.3s;font-family:'Inter',sans-serif;
 }
 .filter-btn:hover{color:#e2e8f0;background:rgba(255,255,255,0.03);}
-.filter-btn.active{background:rgba(255,215,0,0.1);color:#ffd700;box-shadow:inset 0 0 0 1px rgba(255,215,0,0.15);}
+.filter-btn.active{background:rgba(255,215,0,0.08);color:#ffd700;box-shadow:inset 0 0 0 1px rgba(255,215,0,0.12);}
 
-/* ─── BENTO GRID ─── */
 .bento{
-  max-width:1200px;margin:0 auto;padding:0 20px;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  max-width:1100px;margin:0 auto;padding:0 20px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
 }
-.bento .card:nth-child(6n+1){grid-column:span 2;grid-row:span 1;}
-.bento .card:nth-child(6n+6){grid-column:span 2;grid-row:span 1;}
+.bento .card:nth-child(6n+1){grid-column:span 2;}
+.bento .card:nth-child(6n+6){grid-column:span 2;}
 @media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr);}.bento .card:nth-child(6n+1),.bento .card:nth-child(6n+6){grid-column:span 2;}}
 @media(max-width:540px){.bento{grid-template-columns:1fr;}.bento .card:nth-child(6n+1),.bento .card:nth-child(6n+6){grid-column:span 1;}}
 
-/* ─── CARDS ─── */
 .card{
-  position:relative;background:rgba(255,255,255,0.02);border-radius:16px;
-  border:1px solid rgba(255,255,255,0.04);padding:22px 20px;cursor:pointer;
+  position:relative;background:rgba(255,255,255,0.02);border-radius:14px;
+  border:1px solid rgba(255,255,255,0.04);padding:20px 18px;cursor:pointer;
   transition:all 0.6s cubic-bezier(0.23,1,0.32,1);overflow:hidden;
   backdrop-filter:blur(12px);opacity:0;transform:translateY(30px);
 }
 .card.visible{opacity:1;transform:translateY(0);}
 .card::before{
-  content:'';position:absolute;inset:0;border-radius:16px;
+  content:'';position:absolute;inset:0;border-radius:14px;
   background:linear-gradient(135deg,rgba(99,102,241,0.04),rgba(255,215,0,0.01));
-  opacity:0;transition:opacity 0.6s;pointer-events:none;
+  opacity:0;transition:opacity 0.5s;pointer-events:none;
 }
 .card-border{
-  position:absolute;inset:-1px;border-radius:17px;pointer-events:none;
-  opacity:0;transition:opacity 0.5s;
-  background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(99,102,241,0.1),rgba(0,255,255,0.1));
+  position:absolute;inset:-1px;border-radius:15px;pointer-events:none;
+  opacity:0;transition:opacity 0.4s;
+  background:linear-gradient(135deg,rgba(255,215,0,0.12),rgba(99,102,241,0.08),rgba(0,255,255,0.08));
   z-index:-1;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
   mask-composite:exclude;-webkit-mask-composite:exclusive;padding:1px;
 }
-.card:hover{transform:translateY(-6px);}
+.card:hover{transform:translateY(-5px);}
 .card:hover .card-border{opacity:1;}
 .card:hover::before{opacity:1;}
 .card:active{transform:translateY(-2px);}
 .card .num{
-  position:absolute;top:14px;right:16px;font-size:10px;font-weight:800;
-  color:rgba(255,255,255,0.03);letter-spacing:0.5px;font-feature-settings:"tnum";
+  position:absolute;top:12px;right:14px;font-size:9px;font-weight:800;
+  color:rgba(255,255,255,0.03);letter-spacing:0.5px;
 }
-.card h3{font-size:15.5px;font-weight:700;margin-bottom:5px;}
-.card .desc{font-size:12px;color:#64748b;line-height:1.5;margin-bottom:12px;}
-.card .tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px;}
-.card .tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:0.2px;}
+.card h3{font-size:14.5px;font-weight:700;margin-bottom:4px;}
+.card .desc{font-size:11.5px;color:#64748b;line-height:1.5;margin-bottom:10px;}
+.card .tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;}
+.card .tag{font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:100px;}
 .tag-easy{background:rgba(34,197,94,0.08);color:#4ade80;border:1px solid rgba(34,197,94,0.1);}
 .tag-medium{background:rgba(234,179,8,0.08);color:#fbbf24;border:1px solid rgba(234,179,8,0.1);}
 .tag-hard{background:rgba(244,63,94,0.08);color:#fb7185;border:1px solid rgba(244,63,94,0.1);}
 .tag-time{background:rgba(6,182,212,0.06);color:#22d3ee;border:1px solid rgba(6,182,212,0.08);}
-.card .price{
-  font-size:21px;font-weight:900;letter-spacing:-0.3px;margin-bottom:4px;
-  background:linear-gradient(135deg,#f1f5f9,#a5b4fc);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.card .bar{display:flex;align-items:center;gap:8px;font-size:11px;color:#475569;}
-.card .bar-track{flex:1;height:3px;background:rgba(255,255,255,0.03);border-radius:4px;overflow:hidden;}
-.card .bar-fill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(0.23,1,0.32,1);background:linear-gradient(90deg,#ffd700,#f59e0b);}
+.card .bar{display:flex;align-items:center;gap:8px;font-size:10.5px;color:#475569;}
+.card .bar-track{flex:1;height:2.5px;background:rgba(255,255,255,0.03);border-radius:4px;overflow:hidden;}
+.card .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#ffd700,#f59e0b);transition:width 1s ease;}
 
-/* ─── MODAL ─── */
 .modal-overlay{
   position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(20px);
   z-index:100;display:none;align-items:center;justify-content:center;
@@ -230,70 +184,39 @@ nav{
 }
 .modal-overlay.open{display:flex;opacity:1;}
 .modal{
-  background:rgba(10,10,20,0.97);border:1px solid rgba(255,215,0,0.06);
-  border-radius:20px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;
-  padding:28px 28px;position:relative;transform:scale(0.92) translateY(30px);
+  background:rgba(10,10,20,0.97);border:1px solid rgba(255,215,0,0.05);
+  border-radius:18px;max-width:540px;width:100%;max-height:80vh;overflow-y:auto;
+  padding:24px;position:relative;transform:scale(0.92) translateY(30px);
   transition:transform 0.5s cubic-bezier(0.23,1,0.32,1);backdrop-filter:blur(30px);
-  box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 60px rgba(255,215,0,0.02);
+  box-shadow:0 40px 80px rgba(0,0,0,0.6);
 }
 .modal-overlay.open .modal{transform:scale(1) translateY(0);}
 .modal-close{
-  position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
+  position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;
   background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);
-  color:#64748b;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:#64748b;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;
   transition:all 0.3s;
 }
-.modal-close:hover{background:rgba(244,63,94,0.08);color:#fb7185;border-color:rgba(244,63,94,0.1);}
-.modal h2{font-size:22px;font-weight:800;margin-bottom:2px;padding-right:30px;}
-.modal .meta{display:flex;gap:6px;flex-wrap:wrap;font-size:12px;color:#64748b;margin-bottom:18px;}
-.modal .meta span{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);padding:3px 12px;border-radius:100px;}
-.modal .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
-@media(max-width:600px){.modal .grid2{grid-template-columns:1fr;}}
-.modal .col h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#ffd700;margin-bottom:6px;}
-.modal ul{padding-left:18px;font-size:12.5px;line-height:1.8;color:#cbd5e1;}
-.modal .prompt{
-  background:rgba(0,0,0,0.3);border:1px solid rgba(255,215,0,0.04);border-radius:10px;
-  padding:14px;font-family:'Inter',monospace;font-size:12px;line-height:1.7;
-  white-space:pre-wrap;color:#64748b;margin-top:6px;
+.modal-close:hover{background:rgba(244,63,94,0.08);color:#fb7185;}
+.modal h2{font-size:20px;font-weight:800;margin-bottom:10px;padding-right:28px;}
+.modal .blocks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;}
+@media(max-width:500px){.modal .blocks{grid-template-columns:1fr;}}
+.modal .block-item{
+  display:flex;align-items:center;gap:6px;font-size:12.5px;color:#cbd5e1;
+  background:rgba(255,255,255,0.02);border-radius:8px;padding:6px 10px;
+  border:1px solid rgba(255,255,255,0.03);
 }
-.modal .copy-btn{
-  background:linear-gradient(135deg,#ffd700,#f59e0b);color:#0a0a12;border:none;
-  padding:9px 20px;border-radius:10px;font-size:12.5px;font-weight:800;cursor:pointer;
-  transition:all 0.3s;font-family:'Inter',sans-serif;
-}
-.modal .copy-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,215,0,0.2);}
+.modal .block-item::before{content:'›';color:#ffd700;font-weight:700;font-size:14px;}
+.modal .footnote{font-size:12px;color:#475569;margin-top:8px;display:flex;gap:10px;flex-wrap:wrap;}
 
-/* ─── FOOTER ─── */
 .footer{
-  text-align:center;padding:48px 20px 32px;color:#334155;font-size:13px;
-  border-top:1px solid rgba(255,215,0,0.03);margin-top:48px;position:relative;z-index:1;
+  text-align:center;padding:40px 20px 28px;color:#334155;font-size:12.5px;
+  border-top:1px solid rgba(255,215,0,0.03);position:relative;z-index:1;
 }
-.footer .brand{justify-content:center;margin-bottom:6px;}
-.footer .brand-ilya{font-size:15px;}
-.footer .brand-klass{font-size:15px;}
 .footer a{color:#ffd700;text-decoration:none;font-weight:600;}
 .footer a:hover{color:#fbbf24;}
 
-/* ─── STATS ─── */
-.stats{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:750px;margin:0 auto 48px;padding:0 20px;
-}
-.stat-card{
-  text-align:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,215,0,0.05);
-  border-radius:14px;padding:22px 16px;backdrop-filter:blur(20px);position:relative;overflow:hidden;
-  opacity:0;transform:translateY(20px);transition:all 0.8s cubic-bezier(0.23,1,0.32,1);
-}
-.stat-card.visible{opacity:1;transform:translateY(0);}
-.stat-card::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.1),transparent);}
-.stat-card .num{
-  font-size:28px;font-weight:900;
-  background:linear-gradient(135deg,#ffd700,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.stat-card .label{font-size:12px;color:#475569;margin-top:2px;}
-@media(max-width:600px){.stats{grid-template-columns:1fr;}}
-
-/* ─── REVEAL ─── */
-.reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.23,1,0.32,1);}
+.reveal{opacity:0;transform:translateY(24px);transition:all 0.8s cubic-bezier(0.23,1,0.32,1);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 </style>
 </head>
@@ -302,34 +225,19 @@ nav{
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
 <div class="blob blob-3"></div>
-
-<nav>
-  <div class="brand">
-    <span class="brand-ilya">ИЛЬ</span><span class="brand-dot">·</span><span class="brand-klass">ЯКЛАСС</span>
-  </div>
-  <a class="nav-link" href="https://github.com/IlyaSigma111" target="_blank">GitHub <span>↗</span></a>
-</nav>
-
 <canvas id="particles-canvas"></canvas>
 
-<!-- HERO -->
-<section class="hero" id="top">
+<section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
-    <div class="hero-badge">
-      <span class="badge-icon">✦ NEW</span>
-      <span>30 шаблонов для твоих клиентов</span>
-    </div>
-    <h1>
-      <span class="white">Сайты на</span><br>
-      <span class="gold">золоте</span>
-      <span class="white"> за час</span>
-    </h1>
-    <p>Выбираешь тип → я генерирую через ИИ → деплою на GitHub Pages. Без сервера, без лишних движений.</p>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">📂 Смотреть каталог</button>
-      <button class="btn-secondary" onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">Как это работает</button>
+    <div class="hero-avatar"><div class="hero-avatar-inner">И</div></div>
+    <h1><span class="gold">Илья</span></h1>
+    <p class="tagline">Делаю сайты. 30 готовых решений — выбирай и заказывай.</p>
+    <div class="hero-links">
+      <a href="#catalog" class="primary">Смотреть каталог</a>
+      <a href="https://github.com/IlyaSigma111" target="_blank">GitHub</a>
+      <a href="mailto:ilyagulkov25@gmail.com">Почта</a>
     </div>
   </div>
   <div class="scroll-indicator">
@@ -338,37 +246,25 @@ nav{
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats" id="info">
-  <div class="stat-card" style="transition-delay:0s"><div class="num">30</div><div class="label">типов сайтов</div></div>
-  <div class="stat-card" style="transition-delay:0.1s"><div class="num">15 мин</div><div class="label">минимальное время</div></div>
-  <div class="stat-card" style="transition-delay:0.2s"><div class="num">2 000₽</div><div class="label">стартовая цена</div></div>
-</div>
-
-<!-- CATALOG -->
-<section id="catalog" style="padding-bottom:40px;">
+<section id="catalog">
   <div class="section-header reveal">
     <div class="section-label"><span>✦</span> Каталог</div>
-    <h2>Что будем делать?</h2>
-    <p>Кликни на карточку — откроются детали и готовый промпт для ИИ</p>
+    <h2>Что я делаю</h2>
+    <p>Кликни на карточку — увидишь детали</p>
   </div>
   <div class="filter-bar reveal">
     <button class="filter-btn active" onclick="filterBy('all')">Все</button>
-    <button class="filter-btn" onclick="filterBy('easy')">🔥 Простые</button>
-    <button class="filter-btn" onclick="filterBy('medium')">⚡ Средние</button>
-    <button class="filter-btn" onclick="filterBy('hard')">🚀 Сложные</button>
+    <button class="filter-btn" onclick="filterBy('easy')">Простые</button>
+    <button class="filter-btn" onclick="filterBy('medium')">Средние</button>
+    <button class="filter-btn" onclick="filterBy('hard')">Сложные</button>
   </div>
   <div class="bento" id="bento"></div>
 </section>
 
-<!-- FOOTER -->
 <div class="footer">
-  <div class="brand"><span class="brand-ilya">ИЛЬ</span><span class="brand-dot">·</span><span class="brand-klass">ЯКЛАСС</span></div>
-  <p>30 готовых решений — сделано на GitHub Pages</p>
-  <p style="margin-top:4px;font-size:12px;"><a href="https://github.com/IlyaSigma111" target="_blank">github.com/IlyaSigma111</a></p>
+  <p>© Илья · <a href="https://github.com/IlyaSigma111" target="_blank">github.com/IlyaSigma111</a></p>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">&#10005;</button>
@@ -378,130 +274,69 @@ nav{
 
 <script>
 const data = [
-  {id:1,name:"Лендинг",desc:"Продающий одностраничник для товара или услуги.",time:"15-30 мин",price:"3 000-8 000₽",complex:"easy",
-    blocks:["Hero — заголовок, подзаголовок, CTA","О продукте","Преимущества (3 карточки)","Отзывы (карусель)","Форма захвата","Footer"],
-    tech:["HTML+CSS+JS","Tailwind CDN"],db:"Не нужна",services:["Formspree"],
-    prompt:'Создай лендинг для [тема].\nЦвета: [цвета]. Шрифт: [шрифт].\nБлоки: Hero с CTA, преимущества, отзывы, форма.\nFormspree. GitHub Pages. Адаптивный, SEO.'},
-  {id:2,name:"Сайт-визитка",desc:"Представление компании или человека.",time:"20-40 мин",price:"3 000-6 000₽",complex:"easy",
-    blocks:["Шапка — лого + меню","О себе","Услуги (4-6)","Портфолио","Контакты + форма","Footer"],
-    tech:["HTML+CSS+JS","Bootstrap 5"],db:"Не нужна",services:["Formspree"],
-    prompt:'Создай сайт-визитку для [компания].\nЦвета: [цвета].\nБлоки: шапка, о себе, услуги, портфолио, контакты.\nFormspree. GitHub Pages.'},
-  {id:3,name:"Портфолио",desc:"Для дизайнеров, фотографов, разработчиков.",time:"30-60 мин",price:"5 000-12 000₽",complex:"medium",
-    blocks:["Hero","О себе","Проекты с фильтрацией","Модальные окна","Навыки","Отзывы","Контакты"],
-    tech:["HTML+CSS+JS","Vanilla JS"],db:"Не нужна (JSON)",services:["Font Awesome"],
-    prompt:'Создай портфолио для [дизайнер].\nПроекты с фильтрацией, данные в JSON. GitHub Pages.'},
-  {id:4,name:"Блог (Jekyll)",desc:"Личный или корпоративный блог.",time:"1-2 часа",price:"8 000-15 000₽",complex:"hard",
-    blocks:["Лента постов","Категории","Полная статья","Поиск","Подписка","Комментарии"],
-    tech:["Jekyll","Liquid","Markdown"],db:"Не нужна",services:["utterances","Pagefind"],
-    prompt:'Сделай блог на Jekyll.\nТема: [тема]. GitHub Pages собирает автоматически.'},
-  {id:5,name:"Корпоративный сайт",desc:"Полноценный сайт для бизнеса.",time:"1-2 часа",price:"10 000-25 000₽",complex:"hard",
-    blocks:["Главная — Hero","О нас","Услуги","Кейсы","Блог","Контакты","Вакансии"],
-    tech:["HTML+CSS+JS","Tailwind"],db:"Не нужна / Firebase",services:["Formspree","GA4"],
-    prompt:'Создай корпоративный сайт для [компания].\nСтраницы: главная, о нас, услуги, кейсы, контакты. GitHub Pages.'},
-  {id:6,name:"Интернет-магазин",desc:"Каталог + корзина + заказы.",time:"2-4 часа",price:"15 000-30 000₽",complex:"hard",
-    blocks:["Главная","Каталог с фильтрами","Карточка","Корзина","Оформление","Спасибо"],
-    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Firestore",services:["Firebase"],
-    prompt:'Создай интернет-магазин для [товары].\nFirebase Firestore. GitHub Pages.'},
-  {id:7,name:"Промо / Акция",desc:"Яркий сайт для рекламной кампании.",time:"20-40 мин",price:"4 000-10 000₽",complex:"easy",
-    blocks:["Таймер","Particles фон","Что получите","Тарифы","Форма","Соцсети"],
-    tech:["HTML+CSS+JS","Particle.js"],db:"Не нужна",services:["Formspree"],
-    prompt:'Создай промо-сайт для [акция]. Таймер, анимация, тарифы, форма. GitHub Pages.'},
-  {id:8,name:"Документация / Wiki",desc:"База знаний, инструкции, API.",time:"1-2 часа",price:"8 000-15 000₽",complex:"hard",
-    blocks:["Боковое меню","Поиск","Статья","Тёмная тема"],
-    tech:["Jekyll + Just the Docs"],db:"Не нужна (Markdown)",services:["Pagefind"],
-    prompt:'Сделай документацию для [проект]. Jekyll + Just the Docs. GitHub Pages.'},
-  {id:9,name:"Telegram-лендинг",desc:"Для раскрутки канала или бота.",time:"15-25 мин",price:"2 000-5 000₽",complex:"easy",
-    blocks:["Hero","О канале","Цифры","Отзывы","Кнопка TG"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["—"],
-    prompt:'Создай лендинг для Telegram-канала [название]. Кнопки на TG. GitHub Pages.'},
-  {id:10,name:"Event / Мероприятие",desc:"Конференция, вебинар, встреча.",time:"30-50 мин",price:"5 000-10 000₽",complex:"medium",
-    blocks:["Hero с датой","Программа","Спикеры","Расписание","Билеты","Регистрация","FAQ"],
-    tech:["HTML+CSS+JS"],db:"Firebase / не нужна",services:["Formspree"],
-    prompt:'Сделай сайт мероприятия [название]. Дата, спикеры, билеты, регистрация. GitHub Pages.'},
-  {id:11,name:"Сайт-каталог",desc:"Каталог товаров с фильтрами.",time:"1-2 часа",price:"10 000-20 000₽",complex:"hard",
-    blocks:["Категории","Список","Карточка","Поиск","Фильтры"],
-    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Firestore",services:["Firebase"],
-    prompt:'Создай сайт-каталог для [товары]. Firebase. GitHub Pages.'},
-  {id:12,name:"Сайт-услуга",desc:"Продвижение одной услуги.",time:"20-40 мин",price:"3 000-7 000₽",complex:"easy",
-    blocks:["Hero","Как работаю","Цены","Портфолио","Отзывы","Форма","FAQ"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
-    prompt:'Создай сайт-услугу для [услуга]. GitHub Pages.'},
-  {id:13,name:"Online CV / Резюме",desc:"Сайт-резюме для работы.",time:"15-30 мин",price:"2 000-5 000₽",complex:"easy",
-    blocks:["Hero","О себе","Опыт (таймлайн)","Навыки","Проекты","Контакты"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Font Awesome"],
-    prompt:'Сделай онлайн-резюме для [профессия]. GitHub Pages.'},
-  {id:14,name:"Membership / Подписка",desc:"Закрытый контент по подписке.",time:"1-3 часа",price:"15 000-30 000₽",complex:"hard",
-    blocks:["Тарифы","Firebase Auth","Личный кабинет","Закрытый контент"],
-    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Auth + Firestore",services:["Firebase"],
-    prompt:'Сделай сайт с подпиской. Firebase Auth. GitHub Pages.'},
-  {id:15,name:"Коучинг / Курс",desc:"Лендинг для курса.",time:"30-50 мин",price:"5 000-12 000₽",complex:"medium",
-    blocks:["Hero","Для кого","Программа","Результаты","Цены","Форма","FAQ"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
-    prompt:'Создай лендинг курса [тема]. GitHub Pages.'},
-  {id:16,name:"Фриланс-портфолио",desc:"Портфолио с биржами.",time:"20-40 мин",price:"3 000-8 000₽",complex:"easy",
-    blocks:["Статус","Стек","Проекты","Статистика","Отзывы","Ссылки на биржи"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
-    prompt:'Сделай портфолио фрилансера [специализация]. GitHub Pages.'},
-  {id:17,name:"Стартап-лендинг",desc:"Для презентации инвесторам.",time:"30-50 мин",price:"8 000-15 000₽",complex:"medium",
-    blocks:["Метрики","Проблема→Решение","Рынок","Команда","График","Раунд","CTA"],
-    tech:["HTML+CSS+JS","Chart.js"],db:"Не нужна",services:["Formspree"],
-    prompt:'Создай лендинг стартапа [название]. GitHub Pages.'},
-  {id:18,name:"App-landing",desc:"Продвижение приложения.",time:"20-40 мин",price:"5 000-10 000₽",complex:"medium",
-    blocks:["Мокап","Скриншоты","Функции","Кнопки магазинов"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["—"],
-    prompt:'Сделай лендинг приложения [название]. GitHub Pages.'},
-  {id:19,name:"Лендинг для бота",desc:"Сайт для Telegram/Discord бота.",time:"15-25 мин",price:"2 000-5 000₽",complex:"easy",
-    blocks:["Имя бота","Функции","Скриншоты","Как начать","Кнопка"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["—"],
-    prompt:'Создай лендинг для бота [имя]. GitHub Pages.'},
-  {id:20,name:"Недвижимость",desc:"Продажа квартиры, дома.",time:"20-40 мин",price:"5 000-10 000₽",complex:"medium",
-    blocks:["Фото+цена","Характеристики","Галерея","Планировка","Форма звонка","Карта"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
-    prompt:'Сделай сайт для недвижимости [объект]. GitHub Pages.'},
-  {id:21,name:"Ресторан / Меню",desc:"Сайт кафе с меню.",time:"30-60 мин",price:"8 000-15 000₽",complex:"medium",
-    blocks:["Главная","Меню","О нас","Бронь","Галерея","Карта"],
-    tech:["HTML+CSS+JS"],db:"JSON / Firebase",services:["Formspree"],
-    prompt:'Создай сайт ресторана [название]. GitHub Pages.'},
-  {id:22,name:"Фитнес / Тренер",desc:"Сайт персонального тренера.",time:"20-40 мин",price:"5 000-10 000₽",complex:"medium",
-    blocks:["Hero","О тренере","Программы","Расписание","Результаты","Форма"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
-    prompt:'Сделай сайт тренера [имя]. GitHub Pages.'},
-  {id:23,name:"Салон красоты",desc:"Сайт с прайсом и записью.",time:"20-50 мин",price:"5 000-12 000₽",complex:"medium",
-    blocks:["Услуги","Мастера","Портфолио","Прайс","Онлайн-запись","Контакты"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
-    prompt:'Создай сайт салона красоты [название]. GitHub Pages.'},
-  {id:24,name:"Клиника / Врач",desc:"Сайт медицинского центра.",time:"30-60 мин",price:"8 000-15 000₽",complex:"medium",
-    blocks:["Главная","О клинике","Врачи","Услуги","Запись","Контакты"],
-    tech:["HTML+CSS+JS"],db:"Не нужна / Firebase",services:["Formspree"],
-    prompt:'Сделай сайт клиники [название]. GitHub Pages.'},
-  {id:25,name:"Агентство (Digital)",desc:"Сайт маркетингового агентства.",time:"30-60 мин",price:"8 000-20 000₽",complex:"medium",
-    blocks:["Цифры","Услуги","Кейсы","Команда","Блог","Контакты"],
-    tech:["HTML+CSS+JS"],db:"Не нужна (JSON)",services:["Formspree"],
-    prompt:'Создай сайт агентства [название]. GitHub Pages.'},
-  {id:26,name:"SaaS / Сервис",desc:"Лендинг онлайн-сервиса.",time:"1-2 часа",price:"10 000-20 000₽",complex:"hard",
-    blocks:["Hero","Демо","Функции","Как работает","Тарифы","Регистрация"],
-    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase",services:["Firebase"],
-    prompt:'Сделай лендинг SaaS [название]. Firebase. GitHub Pages.'},
-  {id:27,name:"Коворкинг",desc:"Сайт коворкинга.",time:"20-40 мин",price:"5 000-10 000₽",complex:"medium",
-    blocks:["Тарифы","Галерея","Удобства","Бронь","Карта"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
-    prompt:'Создай сайт коворкинга [название]. GitHub Pages.'},
-  {id:28,name:"Туризм / Путешествия",desc:"Сайт туров.",time:"30-60 мин",price:"5 000-12 000₽",complex:"medium",
-    blocks:["Направления","Тур","Календарь","О гиде","Бронь","FAQ"],
-    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
-    prompt:'Сделай сайт туров [название]. GitHub Pages.'},
-  {id:29,name:"Цифровые товары",desc:"Магазин шаблонов, курсов.",time:"1-2 часа",price:"10 000-25 000₽",complex:"hard",
-    blocks:["Категории","Каталог","Карточка","Корзина","Личный кабинет"],
-    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Firestore",services:["Firebase"],
-    prompt:'Создай магазин цифровых товаров [тема]. Firebase. GitHub Pages.'},
-  {id:30,name:"Новостной портал",desc:"Новостной сайт.",time:"2-4 часа",price:"15 000-35 000₽",complex:"hard",
-    blocks:["Лента","Категория","Статья","Поиск","Комментарии"],
-    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Firestore",services:["Firebase","utterances"],
-    prompt:'Создай новостной портал [тема]. Firebase. GitHub Pages.'}
+  {id:1,name:"Лендинг",desc:"Продающий одностраничник.",time:"15-30 мин",complex:"easy",n:"3-5 блоков",
+    blocks:["Hero с CTA","О продукте","Преимущества","Отзывы","Форма захвата","Футер"]},
+  {id:2,name:"Сайт-визитка",desc:"Представление компании или человека.",time:"20-40 мин",complex:"easy",n:"4-6 блоков",
+    blocks:["Лого + меню","О себе","Услуги","Портфолио","Контакты","Футер"]},
+  {id:3,name:"Портфолио",desc:"Для дизайнеров, фотографов, разработчиков.",time:"30-60 мин",complex:"medium",n:"5-7 блоков",
+    blocks:["Hero","О себе","Проекты","Модальные окна","Навыки","Отзывы","Контакты"]},
+  {id:4,name:"Блог",desc:"Личный или корпоративный блог.",time:"1-2 часа",complex:"hard",n:"4-6 блоков",
+    blocks:["Лента постов","Категории","Статья","Поиск","Подписка","Комментарии"]},
+  {id:5,name:"Корпоративный сайт",desc:"Полноценный сайт компании.",time:"1-2 часа",complex:"hard",n:"5-7 страниц",
+    blocks:["Главная","О нас","Услуги","Кейсы","Блог","Контакты","Вакансии"]},
+  {id:6,name:"Интернет-магазин",desc:"Каталог, корзина, заказы.",time:"2-4 часа",complex:"hard",n:"5-6 страниц",
+    blocks:["Каталог","Фильтры","Карточка","Корзина","Оформление","Заказы"]},
+  {id:7,name:"Промо / Акция",desc:"Яркий сайт для рекламы.",time:"20-40 мин",complex:"easy",n:"4-5 блоков",
+    blocks:["Таймер","Анимация","Что получите","Тарифы","Форма"]},
+  {id:8,name:"Документация / Wiki",desc:"База знаний, инструкции.",time:"1-2 часа",complex:"hard",n:"3-4 блока",
+    blocks:["Меню","Поиск","Статья","Оглавление"]},
+  {id:9,name:"Telegram-лендинг",desc:"Для раскрутки канала или бота.",time:"15-25 мин",complex:"easy",n:"4-5 блоков",
+    blocks:["Hero","О канале","Цифры","Отзывы","Кнопка TG"]},
+  {id:10,name:"Event / Мероприятие",desc:"Конференция, вебинар.",time:"30-50 мин",complex:"medium",n:"5-7 блоков",
+    blocks:["Дата/место","Программа","Спикеры","Расписание","Билеты","Регистрация","FAQ"]},
+  {id:11,name:"Сайт-каталог",desc:"Каталог с фильтрами.",time:"1-2 часа",complex:"hard",n:"4-5 страниц",
+    blocks:["Категории","Список","Карточка","Поиск","Фильтры"]},
+  {id:12,name:"Сайт-услуга",desc:"Продвижение одной услуги.",time:"20-40 мин",complex:"easy",n:"5-6 блоков",
+    blocks:["Hero","Как работаю","Цены","Портфолио","Отзывы","Форма","FAQ"]},
+  {id:13,name:"Online CV / Резюме",desc:"Сайт-резюме.",time:"15-30 мин",complex:"easy",n:"5-6 блоков",
+    blocks:["Hero","О себе","Опыт","Навыки","Проекты","Контакты"]},
+  {id:14,name:"Membership",desc:"Контент по подписке.",time:"1-3 часа",complex:"hard",n:"4-5 страниц",
+    blocks:["Тарифы","Вход","Личный кабинет","Контент","FAQ"]},
+  {id:15,name:"Коучинг / Курс",desc:"Лендинг для курса.",time:"30-50 мин",complex:"medium",n:"5-7 блоков",
+    blocks:["Hero","Для кого","Программа","Результаты","Цены","Форма","FAQ"]},
+  {id:16,name:"Фриланс-портфолио",desc:"Портфолио с биржами.",time:"20-40 мин",complex:"easy",n:"5-6 блоков",
+    blocks:["Статус","Стек","Проекты","Статистика","Отзывы","Ссылки"]},
+  {id:17,name:"Стартап-лендинг",desc:"Для инвесторов.",time:"30-50 мин",complex:"medium",n:"6-8 блоков",
+    blocks:["Метрики","Решение","Рынок","Команда","График","Раунд","CTA"]},
+  {id:18,name:"App-landing",desc:"Продвижение приложения.",time:"20-40 мин",complex:"medium",n:"4-5 блоков",
+    blocks:["Мокап","Скриншоты","Функции","Кнопки магазинов","Отзывы"]},
+  {id:19,name:"Лендинг для бота",desc:"Сайт для бота.",time:"15-25 мин",complex:"easy",n:"4-5 блоков",
+    blocks:["Имя","Функции","Скриншоты","Как начать","Кнопка"]},
+  {id:20,name:"Недвижимость",desc:"Продажа объекта.",time:"20-40 мин",complex:"medium",n:"5-7 блоков",
+    blocks:["Фото+цена","Характеристики","Галерея","Планировка","Форма","Карта"]},
+  {id:21,name:"Ресторан / Меню",desc:"Сайт кафе.",time:"30-60 мин",complex:"medium",n:"5-7 блоков",
+    blocks:["Главная","Меню","О нас","Бронь","Галерея","Карта"]},
+  {id:22,name:"Фитнес / Тренер",desc:"Сайт тренера.",time:"20-40 мин",complex:"medium",n:"5-6 блоков",
+    blocks:["Hero","О тренере","Программы","Расписание","Результаты","Форма"]},
+  {id:23,name:"Салон красоты",desc:"Сайт салона.",time:"20-50 мин",complex:"medium",n:"6-8 блоков",
+    blocks:["Услуги","Мастера","Портфолио","Прайс","Запись","Отзывы","Контакты"]},
+  {id:24,name:"Клиника / Врач",desc:"Сайт клиники.",time:"30-60 мин",complex:"medium",n:"5-7 страниц",
+    blocks:["Главная","О клинике","Врачи","Услуги","Запись","Контакты"]},
+  {id:25,name:"Digital-агентство",desc:"Сайт агентства.",time:"30-60 мин",complex:"medium",n:"6-8 страниц",
+    blocks:["Цифры","Услуги","Кейсы","Команда","Блог","Контакты"]},
+  {id:26,name:"SaaS / Сервис",desc:"Лендинг сервиса.",time:"1-2 часа",complex:"hard",n:"6-8 блоков",
+    blocks:["Hero","Демо","Функции","Как работает","Тарифы","Регистрация"]},
+  {id:27,name:"Коворкинг",desc:"Сайт коворкинга.",time:"20-40 мин",complex:"medium",n:"5-6 блоков",
+    blocks:["Тарифы","Галерея","Удобства","Бронь","Карта"]},
+  {id:28,name:"Туризм",desc:"Сайт туров.",time:"30-60 мин",complex:"medium",n:"5-7 блоков",
+    blocks:["Направления","Тур","Календарь","О гиде","Бронь","FAQ"]},
+  {id:29,name:"Цифровые товары",desc:"Магазин шаблонов, курсов.",time:"1-2 часа",complex:"hard",n:"5-6 страниц",
+    blocks:["Категории","Каталог","Карточка","Корзина","Личный кабинет"]},
+  {id:30,name:"Новостной портал",desc:"Новостной сайт.",time:"2-4 часа",complex:"hard",n:"5-7 страниц",
+    blocks:["Лента","Категории","Статья","Поиск","Комментарии"]}
 ];
 
-let currentFilter='all';
-let cardObserver;
+let currentFilter='all',cardObserver;
 
 function filterBy(t){
   currentFilter=t;
@@ -515,7 +350,6 @@ function renderGrid(f){
   const fd=f==='all'?data:data.filter(d=>d.complex===f);
   const l={easy:'Простой',medium:'Средний',hard:'Сложный'};
   const tc={easy:'tag-easy',medium:'tag-medium',hard:'tag-hard'};
-  
   fd.forEach((d,i)=>{
     const c=document.createElement('div');c.className='card';
     c.style.transitionDelay=`${i*0.03}s`;
@@ -529,87 +363,52 @@ function renderGrid(f){
         <span class="tag ${tc[d.complex]}">${l[d.complex]}</span>
         <span class="tag tag-time">⏱ ${d.time}</span>
       </div>
-      <div class="price">${d.price}</div>
       <div class="bar">
-        <span>${d.blocks.length} блоков</span>
+        <span>${d.n}</span>
         <div class="bar-track"><div class="bar-fill" style="width:${d.complex==='easy'?'30':d.complex==='medium'?'55':'85'}%"></div></div>
       </div>
     `;
     grid.appendChild(c);
   });
-
-  // Observe new cards
   if(cardObserver) cardObserver.disconnect();
-  cardObserver=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');cardObserver.unobserve(e.target);}});
-  },{threshold:0.05});
+  cardObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');cardObserver.unobserve(e.target);}});},{threshold:0.05});
   document.querySelectorAll('.card').forEach(el=>cardObserver.observe(el));
 }
 
 function openModal(id){
-  const d=data.find(x=>x.id===id);if(!d)return;
-  const l={easy:'Простой',medium:'Средний',hard:'Сложный'};
+  const d=data.find(x=>x.id===id);
   document.getElementById('modal-content').innerHTML=`
     <h2>${d.name}</h2>
-    <div class="meta"><span>⏱ ${d.time}</span><span>🔥 ${l[d.complex]}</span><span>💰 ${d.price}</span></div>
-    <div class="grid2">
-      <div class="col"><h4>📋 Что входит</h4><ul>${d.blocks.map(b=>'<li>'+b+'</li>').join('')}</ul></div>
-      <div class="col">
-        <h4>🛠 Технологии</h4><ul>${d.tech.map(t=>'<li>'+t+'</li>').join('')}</ul>
-        <div style="margin-top:8px;"><strong>БД:</strong> ${d.db}</div>
-        <div><strong>Сервисы:</strong> ${d.services.join(', ')}</div>
-      </div>
-    </div>
-    <div style="margin-top:4px;">
-      <h4 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#ffd700;margin-bottom:6px;">🤖 Промпт для ИИ</h4>
-      <div class="prompt" id="prompt-${d.id}">${d.prompt}</div>
-      <button class="copy-btn" onclick="copyPrompt(${d.id})" style="margin-top:8px;">📋 Копировать промпт</button>
-    </div>
+    <div class="blocks">${d.blocks.map(b=>'<div class="block-item">'+b+'</div>').join('')}</div>
+    <div class="footnote"><span>⏱ ${d.time}</span><span>${d.n}</span></div>
   `;
   document.getElementById('modal').classList.add('open');
 }
 
 function closeModal(){document.getElementById('modal').classList.remove('open');}
-function copyPrompt(id){const el=document.getElementById('prompt-'+id);if(!el)return;navigator.clipboard.writeText(el.textContent).then(()=>{const btn=document.querySelector('.copy-btn');const o=btn.textContent;btn.textContent='✅ Скопировано!';setTimeout(()=>btn.textContent=o,2000);});}
-
 document.getElementById('modal').addEventListener('click',e=>{if(e.target===document.getElementById('modal'))closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// PARTICLES
 const canvas=document.getElementById('particles-canvas'),ctx=canvas.getContext('2d');
 let particles=[],w,h;
 function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
 window.addEventListener('resize',resize);resize();
 class Particle{
   constructor(){this.reset();}
-  reset(){
-    this.x=Math.random()*w;this.y=Math.random()*h;
-    this.size=Math.random()*1.8+0.2;this.speedX=(Math.random()-0.5)*0.2;
-    this.speedY=(Math.random()-0.5)*0.2;this.opacity=Math.random()*0.3+0.03;
-  }
+  reset(){this.x=Math.random()*w;this.y=Math.random()*h;this.size=Math.random()*1.8+0.2;this.speedX=(Math.random()-0.5)*0.2;this.speedY=(Math.random()-0.5)*0.2;this.opacity=Math.random()*0.3+0.03;}
   update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0||this.x>w||this.y<0||this.y>h)this.reset();}
   draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=`rgba(255,215,0,${this.opacity})`;ctx.fill();}
 }
 for(let i=0;i<80;i++)particles.push(new Particle());
 function animateParticles(){
-  ctx.clearRect(0,0,w,h);
-  particles.forEach(p=>{p.update();p.draw();});
-  for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
-    const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
-    if(d<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(255,215,0,${0.02*(1-d/100)})`;ctx.lineWidth=0.5;ctx.stroke();}
-  }
+  ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.update();p.draw();});
+  for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(255,215,0,${0.02*(1-d/100)})`;ctx.lineWidth=0.5;ctx.stroke();}}
   requestAnimationFrame(animateParticles);
 }
 animateParticles();
 
-// REVEAL
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// Stats observer
-const statsObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');statsObs.unobserve(e.target);}});},{threshold:0.3});
-document.querySelectorAll('.stat-card').forEach(el=>statsObs.observe(el));
-
 renderGrid('all');
 </script>
 </body>
