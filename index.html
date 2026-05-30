@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create &mdash; каталог сайтов</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#f1f5f9;overflow-x:hidden;}
+
+::selection{background:#6366f1;color:#fff;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#0a0a0f;}
+::-webkit-scrollbar-thumb{background:#312e81;border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:#4338ca;}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:#0a0a0f;overflow:hidden;perspective:1200px;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(99,102,241,0.12) 0%,transparent 70%),
+             radial-gradient(ellipse 60% 50% at 80% 20%,rgba(168,85,247,0.08) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 40% at 20% 80%,rgba(6,182,212,0.06) 0%,transparent 50%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(99,102,241,0.03) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(99,102,241,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 30%,transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 30%,transparent 70%);
+  pointer-events:none;
+}
+.hero-glow{
+  position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(99,102,241,0.15),transparent 70%);
+  top:20%;left:50%;transform:translate(-50%,-50%);filter:blur(60px);pointer-events:none;
+  animation:glowPulse 6s ease-in-out infinite;
+}
+@keyframes glowPulse{
+  0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1);}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.3);}
+}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:800px;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,0.1);
+  border:1px solid rgba(99,102,241,0.2);border-radius:100px;padding:6px 16px;
+  font-size:12px;font-weight:600;color:#a5b4fc;letter-spacing:0.5px;margin-bottom:24px;
+  backdrop-filter:blur(10px);animation:fadeInUp 0.8s ease-out;
+}
+.hero-badge span{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero h1{
+  font-size:clamp(40px,8vw,80px);font-weight:900;line-height:1.05;margin-bottom:20px;
+  background:linear-gradient(135deg,#f1f5f9 0%,#a5b4fc 40%,#818cf8 60%,#c084fc 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:fadeInUp 0.8s ease-out 0.1s both;
+}
+.hero p{
+  font-size:clamp(16px,2vw,20px);color:#94a3b8;line-height:1.7;margin-bottom:36px;max-width:600px;margin-left:auto;margin-right:auto;
+  animation:fadeInUp 0.8s ease-out 0.2s both;
+}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 0.8s ease-out 0.3s both;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  color:#fff;border:none;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:700;
+  cursor:pointer;transition:all 0.3s;text-decoration:none;position:relative;overflow:hidden;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  opacity:0;transition:opacity 0.3s;border-radius:12px;
+}
+.btn-primary:hover::before{opacity:1;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(99,102,241,0.35);}
+.btn-primary:active{transform:translateY(0);}
+.btn-primary span{position:relative;z-index:1;}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;
+  padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;
+  transition:all 0.3s;text-decoration:none;
+}
+.btn-secondary:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);transform:translateY(-2px);}
+.scroll-indicator{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:#475569;font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  animation:fadeInUp 0.8s ease-out 0.5s both;
+}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,#475569,transparent);animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{opacity:0.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.5);}}
+
+/* ─── PARTICLES ─── */
+#particles-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
+
+/* ─── SECTIONS ─── */
+section{position:relative;z-index:1;}
+.section-header{text-align:center;margin-bottom:48px;}
+.section-label{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:#6366f1;margin-bottom:12px;border:1px solid rgba(99,102,241,0.2);padding:4px 14px;border-radius:100px;
+}
+.section-header h2{
+  font-size:clamp(28px,4vw,44px);font-weight:800;margin-bottom:12px;
+  background:linear-gradient(135deg,#f1f5f9,#818cf8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.section-header p{color:#64748b;font-size:16px;max-width:500px;margin:0 auto;line-height:1.6;}
+
+/* ─── FILTERS ─── */
+.filter-bar{
+  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;
+  padding:6px;background:rgba(255,255,255,0.03);border-radius:14px;border:1px solid rgba(255,255,255,0.05);
+  max-width:520px;margin-left:auto;margin-right:auto;backdrop-filter:blur(20px);
+}
+.filter-btn{
+  background:transparent;border:none;color:#64748b;padding:8px 20px;border-radius:10px;
+  font-size:13px;font-weight:600;cursor:pointer;transition:all 0.3s;font-family:'Inter',sans-serif;
+}
+.filter-btn:hover{color:#e2e8f0;background:rgba(255,255,255,0.05);}
+.filter-btn.active{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.3);}
+
+/* ─── GRID ─── */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;
+  max-width:1200px;margin:0 auto;padding:0 20px;
+}
+@media(max-width:640px){.grid{grid-template-columns:1fr;}}
+
+/* ─── CARDS ─── */
+.card{
+  position:relative;background:rgba(255,255,255,0.03);border-radius:16px;
+  border:1px solid rgba(255,255,255,0.06);padding:24px;cursor:pointer;
+  transition:all 0.5s cubic-bezier(0.23,1,0.32,1);overflow:hidden;
+  backdrop-filter:blur(20px);transform-style:preserve-3d;
+}
+.card::before{
+  content:'';position:absolute;inset:0;border-radius:16px;
+  background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(168,85,247,0.04));
+  opacity:0;transition:opacity 0.5s;pointer-events:none;
+}
+.card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(99,102,241,0.2),transparent);
+  opacity:0;transition:opacity 0.5s;
+}
+.card:hover{transform:translateY(-8px) scale(1.01);border-color:rgba(99,102,241,0.25);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(99,102,241,0.05);}
+.card:hover::before{opacity:1;}
+.card:hover::after{opacity:1;}
+.card:active{transform:translateY(-4px) scale(1.005);}
+.card .num{
+  position:absolute;top:16px;right:18px;font-size:11px;font-weight:800;
+  color:rgba(255,255,255,0.06);letter-spacing:1px;
+}
+.card h3{font-size:17px;font-weight:700;margin-bottom:6px;position:relative;}
+.card .desc{font-size:13px;color:#94a3b8;line-height:1.5;margin-bottom:14px;position:relative;}
+.card .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;position:relative;}
+.card .tag{
+  font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px;letter-spacing:0.3px;
+}
+.tag-easy{background:rgba(34,197,94,0.12);color:#4ade80;border:1px solid rgba(34,197,94,0.15);}
+.tag-medium{background:rgba(234,179,8,0.12);color:#fbbf24;border:1px solid rgba(234,179,8,0.15);}
+.tag-hard{background:rgba(244,63,94,0.12);color:#fb7185;border:1px solid rgba(244,63,94,0.15);}
+.tag-time{background:rgba(6,182,212,0.1);color:#22d3ee;border:1px solid rgba(6,182,212,0.12);}
+.card .price{
+  font-size:24px;font-weight:900;letter-spacing:-0.5px;position:relative;margin-bottom:6px;
+  background:linear-gradient(135deg,#f1f5f9,#a5b4fc);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.card .bar{display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;position:relative;}
+.card .bar-track{flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;position:relative;}
+.card .bar-fill{
+  height:100%;border-radius:4px;transition:width 0.8s cubic-bezier(0.23,1,0.32,1);
+  background:linear-gradient(90deg,#6366f1,#8b5cf6);
+}
+.card .shine{
+  position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle at 50% 0%,rgba(255,255,255,0.04),transparent 60%);
+  pointer-events:none;opacity:0;transition:opacity 0.5s;
+}
+.card:hover .shine{opacity:1;}
+
+/* ─── DETAIL MODAL ─── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(12px);
+  z-index:100;display:none;align-items:center;justify-content:center;
+  padding:20px;opacity:0;transition:opacity 0.4s;
+}
+.modal-overlay.open{display:flex;opacity:1;}
+.modal{
+  background:rgba(15,15,25,0.95);border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;
+  padding:32px;position:relative;transform:scale(0.95) translateY(20px);
+  transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);backdrop-filter:blur(30px);
+  box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 60px rgba(99,102,241,0.05);
+}
+.modal-overlay.open .modal{transform:scale(1) translateY(0);}
+.modal-close{
+  position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+  color:#94a3b8;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;
+}
+.modal-close:hover{background:rgba(244,63,94,0.15);color:#fb7185;border-color:rgba(244,63,94,0.2);}
+.modal h2{font-size:24px;font-weight:800;margin-bottom:4px;padding-right:30px;}
+.modal .meta{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;color:#94a3b8;margin-bottom:20px;}
+.modal .meta span{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.05);
+  padding:4px 14px;border-radius:100px;
+}
+.modal .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:600px){.modal .grid2{grid-template-columns:1fr;}}
+.modal .col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6366f1;margin-bottom:8px;}
+.modal ul{padding-left:18px;font-size:13.5px;line-height:1.8;color:#cbd5e1;}
+.modal .prompt{
+  background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:12px;
+  padding:16px;font-family:'Inter',monospace;font-size:13px;line-height:1.7;
+  white-space:pre-wrap;color:#94a3b8;margin-top:8px;
+}
+.modal .copy-btn{
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;
+  padding:10px 24px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;
+  transition:all 0.3s;font-family:'Inter',sans-serif;
+}
+.modal .copy-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,0.3);}
+
+/* ─── FOOTER ─── */
+.footer{
+  text-align:center;padding:60px 20px 40px;color:#475569;font-size:13px;
+  border-top:1px solid rgba(255,255,255,0.04);margin-top:60px;position:relative;z-index:1;
+}
+.footer a{color:#6366f1;text-decoration:none;}
+.footer a:hover{color:#818cf8;}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* ─── OBSERVER ─── */
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.23,1,0.32,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ─── COUNTER ─── */
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto 50px;padding:0 20px;
+}
+.stat-card{
+  text-align:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);
+  border-radius:16px;padding:24px;backdrop-filter:blur(20px);
+}
+.stat-card .num{font-size:32px;font-weight:900;background:linear-gradient(135deg,#f1f5f9,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-card .label{font-size:13px;color:#64748b;margin-top:4px;}
+@media(max-width:600px){.stats{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> 30 готовых решений</div>
+    <h1>Сайт за час<br>по промпту</h1>
+    <p>Выберите тип сайта &mdash; я создам его через ИИ и залью на GitHub Pages. Полностью готовый проект за считанные минуты.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})"><span>📂 Смотреть каталог</span></button>
+      <button class="btn-secondary" onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">Как это работает</button>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Листай</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal" id="info">
+  <div class="stat-card"><div class="num">30</div><div class="label">типов сайтов</div></div>
+  <div class="stat-card"><div class="num">15 мин</div><div class="label">минимальное время</div></div>
+  <div class="stat-card"><div class="num">2 000₽</div><div class="label">от</div></div>
+</div>
+
+<!-- CATALOG -->
+<section id="catalog" style="padding-bottom:40px;">
+  <div class="section-header reveal">
+    <div class="section-label">Каталог</div>
+    <h2>Выберите тип сайта</h2>
+    <p>Кликните на карточку &mdash; увидите детали и готовый промпт для ИИ</p>
+  </div>
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" onclick="filterBy('all')">Все</button>
+    <button class="filter-btn" onclick="filterBy('easy')">🔥 Простые</button>
+    <button class="filter-btn" onclick="filterBy('medium')">⚡ Средние</button>
+    <button class="filter-btn" onclick="filterBy('hard')">🚀 Сложные</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Создано для ежедневника &mdash; 30 шаблонов под GitHub Pages</p>
+  <p style="margin-top:4px;font-size:12px;color:#334155;">Выберите сайт, скопируйте промпт, отдайте ИИ &mdash; готово</p>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───
+const data = [
+  {id:1,name:"Лендинг",desc:"Продающий одностраничник для товара или услуги.",time:"15-30 мин",price:"3 000-8 000₽",complex:"easy",
+    blocks:["Hero — заголовок, подзаголовок, CTA","О продукте / услуге","Преимущества (3 карточки)","Отзывы (карусель, 3-5 шт)","Форма захвата (имя, email, телефон)","Footer — контакты, соцсети"],
+    tech:["Чистый HTML+CSS+JS","Tailwind через CDN"],db:"Не нужна",services:["Formspree"],
+    prompt:'Создай лендинг для [тема].\nЦвета: [основной] + [акцент].\nШрифт: [шрифт].\nБлоки: Hero с CTA, преимущества, отзывы, форма.\nФорма на Formspree.\nХостинг: GitHub Pages, чистый HTML+CSS+JS без сборки.\nАдаптивный, SEO мета-теги, favicon.'},
+  {id:2,name:"Сайт-визитка",desc:"Представление компании или человека. Кратко.",time:"20-40 мин",price:"3 000-6 000₽",complex:"easy",
+    blocks:["Шапка — лого + меню","О себе / компании","Услуги (4-6 карточек)","Портфолио (сетка)","Контакты — карта + форма","Footer"],
+    tech:["HTML+CSS+JS","Bootstrap 5 CDN"],db:"Не нужна",services:["Formspree"],
+    prompt:'Создай сайт-визитку для [компания].\nЦвета: [цвета]. Шрифт: [шрифт].\nБлоки: шапка, о себе, услуги, портфолио, контакты.\nFormspree. GitHub Pages.'},
+  {id:3,name:"Портфолио",desc:"Для дизайнеров, фотографов, разработчиков.",time:"30-60 мин",price:"5 000-12 000₽",complex:"medium",
+    blocks:["Hero + фон","О себе","Проекты — фильтруемая сетка","Модальные окна (фото, описание)","Навыки (бары / иконки)","Отзывы","Контакты"],
+    tech:["HTML+CSS+JS","Vanilla JS"],db:"Не нужна (JSON)",services:["Font Awesome"],
+    prompt:'Создай портфолио для [дизайнер].\nЦвета: [цвета].\nБлоки: Hero, проекты с фильтрацией, навыки, отзывы, контакты.\nДанные в JSON.\nGitHub Pages.'},
+  {id:4,name:"Блог (Jekyll)",desc:"Личный или корпоративный блог со статьями.",time:"1-2 часа",price:"8 000-15 000₽",complex:"hard",
+    blocks:["Главная — список постов","Категории / теги","Полная статья + автор + дата","Поиск","Подписка","Комментарии"],
+    tech:["Jekyll","Liquid","Markdown"],db:"Не нужна (Markdown)",services:["utterances","Pagefind"],
+    prompt:'Сделай блог на Jekyll.\nТема: [тема].\nБлоки: лента статей, категории, статья, поиск, комментарии.\nGitHub Pages собирает автоматически.'},
+  {id:5,name:"Корпоративный сайт",desc:"Полноценный сайт для бизнеса.",time:"1-2 часа",price:"10 000-25 000₽",complex:"hard",
+    blocks:["Главная — Hero, цифры","О нас — история, команда","Услуги","Кейсы","Блог","Контакты","Вакансии"],
+    tech:["HTML+CSS+JS","Tailwind / Bootstrap"],db:"Не нужна / Firebase",services:["Formspree","GA4"],
+    prompt:'Создай корпоративный сайт для [компания].\nСтраницы: главная, о нас, услуги, кейсы, блог, контакты.\nGitHub Pages.'},
+  {id:6,name:"Интернет-магазин",desc:"Каталог, корзина, заказы.",time:"2-4 часа",price:"15 000-30 000₽",complex:"hard",
+    blocks:["Главная — категории, хиты","Каталог — фильтры","Карточка товара","Корзина (localStorage)","Оформление заказа","Страница спасибо"],
+    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Firestore",services:["Firebase"],
+    prompt:'Создай интернет-магазин для [товары].\nКаталог, фильтры, корзина, заказы.\nFirebase Firestore.\nGitHub Pages.'},
+  {id:7,name:"Промо / Акция",desc:"Яркий сайт для рекламной кампании.",time:"20-40 мин",price:"4 000-10 000₽",complex:"easy",
+    blocks:["Таймер отсчёта","Анимированный фон (Particles)","Что получите (4 блока)","Тарифы","Форма регистрации","Соцсети"],
+    tech:["HTML+CSS+JS","Particle.js"],db:"Не нужна",services:["Formspree"],
+    prompt:'Создай промо-сайт для [акция].\nТаймер, анимация, тарифы, форма.\nGitHub Pages.'},
+  {id:8,name:"Документация / Wiki",desc:"База знаний, инструкции, API.",time:"1-2 часа",price:"8 000-15 000₽",complex:"hard",
+    blocks:["Боковое меню","Поиск","Статья + оглавление","Тёмная тема","Ссылка на GitHub"],
+    tech:["Jekyll + Just the Docs","Docsify"],db:"Не нужна (Markdown)",services:["Pagefind"],
+    prompt:'Сделай сайт документации для [проект].\nJekyll + Just the Docs.\nПоиск, оглавление.\nGitHub Pages.'},
+  {id:9,name:"Telegram-лендинг",desc:"Для раскрутки канала или бота.",time:"15-25 мин",price:"2 000-5 000₽",complex:"easy",
+    blocks:["Hero — название","О чём канал","Цифры","Отзывы","Кнопка «Подписаться»","Кнопка «Написать боту»"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["—"],
+    prompt:'Создай лендинг для Telegram-канала [название].\nКнопки на TG.\nGitHub Pages.'},
+  {id:10,name:"Event / Мероприятие",desc:"Конференция, вебинар, встреча.",time:"30-50 мин",price:"5 000-10 000₽",complex:"medium",
+    blocks:["Hero — дата, место","Программа","Спикеры","Расписание","Билеты","Регистрация","FAQ"],
+    tech:["HTML+CSS+JS"],db:"Firebase / не нужна",services:["Formspree"],
+    prompt:'Сделай сайт мероприятия [название].\nДата, спикеры, программа, билеты, регистрация.\nGitHub Pages.'},
+  {id:11,name:"Сайт-каталог",desc:"Каталог товаров. Фильтры и поиск.",time:"1-2 часа",price:"10 000-20 000₽",complex:"hard",
+    blocks:["Главная — категории","Категория — список","Карточка товара","Поиск","Фильтры"],
+    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Firestore",services:["Firebase"],
+    prompt:'Создай сайт-каталог для [товары].\nКатегории, фильтры, поиск.\nFirebase.\nGitHub Pages.'},
+  {id:12,name:"Сайт-услуга",desc:"Продвижение одной услуги с ценами.",time:"20-40 мин",price:"3 000-7 000₽",complex:"easy",
+    blocks:["Hero","Как работаю (шаги)","Цены (3 тарифа)","Портфолио","Отзывы","Форма","FAQ"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
+    prompt:'Создай сайт-услугу для [услуга].\nШаги, тарифы, портфолио, форма.\nGitHub Pages.'},
+  {id:13,name:"Online CV / Резюме",desc:"Сайт-резюме для поиска работы.",time:"15-30 мин",price:"2 000-5 000₽",complex:"easy",
+    blocks:["Hero — фото, должность","О себе","Опыт (таймлайн)","Навыки","Образование","Проекты","Контакты + PDF"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Font Awesome"],
+    prompt:'Сделай онлайн-резюме для [профессия].\nТаймлайн, навыки, контакты.\nGitHub Pages.'},
+  {id:14,name:"Membership / Подписка",desc:"Закрытый контент по подписке.",time:"1-3 часа",price:"15 000-30 000₽",complex:"hard",
+    blocks:["Главная","Тарифы","Вход (Firebase Auth)","Личный кабинет","Закрытый контент","FAQ"],
+    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Firestore + Auth",services:["Firebase Auth"],
+    prompt:'Сделай сайт с подпиской для [проект].\nFirebase Auth, тарифы, личный кабинет.\nGitHub Pages.'},
+  {id:15,name:"Коучинг / Курс",desc:"Лендинг для курса или наставничества.",time:"30-50 мин",price:"5 000-12 000₽",complex:"medium",
+    blocks:["Hero — результат","Для кого","Программа","Результаты учеников","Отзывы","Цены","Форма","FAQ"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
+    prompt:'Создай лендинг курса [тема].\nПрограмма, результаты, цены, форма.\nGitHub Pages.'},
+  {id:16,name:"Фриланс-портфолио",desc:"Портфолио фрилансера с биржами.",time:"20-40 мин",price:"3 000-8 000₽",complex:"easy",
+    blocks:["Hero — статус","Стек технологий","Проекты","Статистика","Отзывы","Форма","Ссылки на биржи"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
+    prompt:'Сделай портфолио фрилансера [специализация].\nСтек, проекты, ссылки на биржи.\nGitHub Pages.'},
+  {id:17,name:"Стартап-лендинг",desc:"Для презентации стартапа инвесторам.",time:"30-50 мин",price:"8 000-15 000₽",complex:"medium",
+    blocks:["Hero — метрики","Проблема → Решение","Рынок","Бизнес-модель","Команда","График роста","Раунд","CTA"],
+    tech:["HTML+CSS+JS","Chart.js"],db:"Не нужна",services:["Formspree"],
+    prompt:'Создай лендинг стартапа [название].\nМетрики, рынок, команда, график.\nGitHub Pages.'},
+  {id:18,name:"App-landing",desc:"Страница продвижения приложения.",time:"20-40 мин",price:"5 000-10 000₽",complex:"medium",
+    blocks:["Hero — мокап","Скриншоты","Функции","Кнопки App Store + Google Play","Отзывы"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["—"],
+    prompt:'Сделай лендинг приложения [название].\nМокап, скриншоты, кнопки магазинов.\nGitHub Pages.'},
+  {id:19,name:"Лендинг для бота",desc:"Сайт для Telegram/Discord бота.",time:"15-25 мин",price:"2 000-5 000₽",complex:"easy",
+    blocks:["Hero — имя","Функции (4)","Скриншоты","Как начать (3 шага)","Кнопка запуска"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["—"],
+    prompt:'Создай лендинг для бота [имя].\nФункции, скриншоты, кнопка.\nGitHub Pages.'},
+  {id:20,name:"Недвижимость",desc:"Продажа квартиры, дома, офиса.",time:"20-40 мин",price:"5 000-10 000₽",complex:"medium",
+    blocks:["Hero — фото + цена","Характеристики","Галерея","Планировка","Инфраструктура","Форма звонка","Карта"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
+    prompt:'Сделай сайт для недвижимости [объект].\nФото, характеристики, галерея, карта.\nGitHub Pages.'},
+  {id:21,name:"Ресторан / Меню",desc:"Сайт кафе с меню и бронированием.",time:"30-60 мин",price:"8 000-15 000₽",complex:"medium",
+    blocks:["Главная","Меню с ценами","О нас","Бронь","Галерея","Отзывы","Карта"],
+    tech:["HTML+CSS+JS"],db:"JSON / Firebase",services:["Formspree"],
+    prompt:'Создай сайт ресторана [название].\nМеню, бронь, галерея, отзывы.\nGitHub Pages.'},
+  {id:22,name:"Фитнес / Тренер",desc:"Сайт персонального тренера.",time:"20-40 мин",price:"5 000-10 000₽",complex:"medium",
+    blocks:["Hero","О тренере","Программы","Расписание","Результаты до/после","Отзывы","Форма"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
+    prompt:'Сделай сайт тренера [имя].\nПрограммы, расписание, результаты.\nGitHub Pages.'},
+  {id:23,name:"Салон красоты",desc:"Сайт салона с прайсом и записью.",time:"20-50 мин",price:"5 000-12 000₽",complex:"medium",
+    blocks:["Hero","Услуги + цены","Мастера","Портфолио","Прайс","Онлайн-запись","Отзывы","Контакты"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
+    prompt:'Создай сайт салона красоты [название].\nУслуги, мастера, прайс, запись.\nGitHub Pages.'},
+  {id:24,name:"Клиника / Врач",desc:"Сайт медицинского центра.",time:"30-60 мин",price:"8 000-15 000₽",complex:"medium",
+    blocks:["Главная","О клинике","Врачи","Услуги и цены","Отзывы","Запись","Контакты"],
+    tech:["HTML+CSS+JS"],db:"Не нужна / Firebase",services:["Formspree"],
+    prompt:'Сделай сайт клиники [название].\nВрачи, услуги, запись.\nGitHub Pages.'},
+  {id:25,name:"Агентство (Digital)",desc:"Сайт маркетингового агентства.",time:"30-60 мин",price:"8 000-20 000₽",complex:"medium",
+    blocks:["Главная — цифры","Услуги","Кейсы","Клиенты","Команда","Отзывы","Блог","Контакты + калькулятор"],
+    tech:["HTML+CSS+JS"],db:"Не нужна (JSON)",services:["Formspree"],
+    prompt:'Создай сайт агентства [название].\nУслуги, кейсы, калькулятор.\nGitHub Pages.'},
+  {id:26,name:"SaaS / Сервис",desc:"Лендинг онлайн-сервиса с регистрацией.",time:"1-2 часа",price:"10 000-20 000₽",complex:"hard",
+    blocks:["Hero","Демо","Функции","Как работает (3 шага)","Тарифы","Интеграции","Отзывы","Регистрация"],
+    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase",services:["Firebase"],
+    prompt:'Сделай лендинг SaaS [название].\nДемо, функции, тарифы, регистрация.\nGitHub Pages.'},
+  {id:27,name:"Коворкинг",desc:"Сайт коворкинга с тарифами.",time:"20-40 мин",price:"5 000-10 000₽",complex:"medium",
+    blocks:["Hero","Тарифы","Галерея","Удобства","Мероприятия","Форма брони","Карта"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
+    prompt:'Создай сайт коворкинга [название].\nТарифы, бронь, карта.\nGitHub Pages.'},
+  {id:28,name:"Туризм / Путешествия",desc:"Сайт туров с бронированием.",time:"30-60 мин",price:"5 000-12 000₽",complex:"medium",
+    blocks:["Главная — направления","Тур — описание, фото, программа","Календарь","О гиде","Отзывы","Форма брони","FAQ"],
+    tech:["HTML+CSS+JS"],db:"Не нужна",services:["Formspree"],
+    prompt:'Сделай сайт туров [название].\nНаправления, тур, бронь.\nGitHub Pages.'},
+  {id:29,name:"Цифровые товары",desc:"Магазин шаблонов, курсов, фото.",time:"1-2 часа",price:"10 000-25 000₽",complex:"hard",
+    blocks:["Главная — категории","Каталог с фильтрами","Карточка товара","Корзина","Оформление","Личный кабинет"],
+    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Firestore",services:["Firebase"],
+    prompt:'Создай магазин цифровых товаров [тема].\nFirebase, корзина, личный кабинет.\nGitHub Pages.'},
+  {id:30,name:"Новостной портал",desc:"Новостной сайт с лентой и поиском.",time:"2-4 часа",price:"15 000-35 000₽",complex:"hard",
+    blocks:["Главная — лента","Категория","Статья","Поиск","Подписка","Комментарии","Контакты"],
+    tech:["HTML+CSS+JS","Firebase SDK"],db:"Firebase Firestore",services:["Firebase","utterances","Pagefind"],
+    prompt:'Создай новостной портал [тема].\nFirebase, лента, поиск, комментарии.\nGitHub Pages.'}
+];
+
+let currentFilter='all';
+
+function filterBy(t){
+  currentFilter=t;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.filter-btn[onclick*="${t}"]`).classList.add('active');
+  renderGrid(t);
+}
+
+function renderGrid(f){
+  const grid=document.getElementById('grid');
+  grid.innerHTML='';
+  const fd=f==='all'?data:data.filter(d=>d.complex===f);
+  const l={easy:'Простой',medium:'Средний',hard:'Сложный'};
+  const tc={easy:'tag-easy',medium:'tag-medium',hard:'tag-hard'};
+  fd.forEach(d=>{
+    const c=document.createElement('div');
+    c.className='card';
+    c.onclick=()=>openModal(d.id);
+    c.innerHTML=`
+      <div class="shine"></div>
+      <span class="num">#${String(d.id).padStart(2,'0')}</span>
+      <h3>${d.name}</h3>
+      <div class="desc">${d.desc}</div>
+      <div class="tags">
+        <span class="tag ${tc[d.complex]}">${l[d.complex]}</span>
+        <span class="tag tag-time">⏱ ${d.time}</span>
+      </div>
+      <div class="price">${d.price}</div>
+      <div class="bar">
+        <span>${d.blocks.length} блоков</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${d.complex==='easy'?'30':d.complex==='medium'?'55':'85'}%"></div></div>
+      </div>
+    `;
+    grid.appendChild(c);
+  });
+}
+
+function openModal(id){
+  const d=data.find(x=>x.id===id);
+  if(!d)return;
+  const l={easy:'Простой',medium:'Средний',hard:'Сложный'};
+  document.getElementById('modal-content').innerHTML=`
+    <h2>${d.name}</h2>
+    <div class="meta">
+      <span>⏱ ${d.time}</span>
+      <span>🔥 ${l[d.complex]}</span>
+      <span>💰 ${d.price}</span>
+    </div>
+    <div class="grid2">
+      <div class="col">
+        <h4>📋 Что входит</h4>
+        <ul>${d.blocks.map(b=>'<li>'+b+'</li>').join('')}</ul>
+      </div>
+      <div class="col">
+        <h4>🛠 Технологии</h4>
+        <ul>${d.tech.map(t=>'<li>'+t+'</li>').join('')}</ul>
+        <div style="margin-top:10px;"><strong>База данных:</strong> ${d.db}</div>
+        <div><strong>Сервисы:</strong> ${d.services.join(', ')}</div>
+      </div>
+    </div>
+    <div style="margin-top:6px;">
+      <h4 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6366f1;margin-bottom:8px;">🤖 Промпт для ИИ</h4>
+      <div class="prompt" id="prompt-${d.id}">${d.prompt}</div>
+      <button class="copy-btn" onclick="copyPrompt(${d.id})" style="margin-top:10px;">📋 Копировать промпт</button>
+    </div>
+  `;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+}
+
+function copyPrompt(id){
+  const el=document.getElementById('prompt-'+id);
+  if(!el)return;
+  navigator.clipboard.writeText(el.textContent).then(()=>{
+    const btn=document.querySelector('.copy-btn');
+    const orig=btn.textContent;
+    btn.textContent='✅ Скопировано!';
+    setTimeout(()=>btn.textContent=orig,2000);
+  });
+}
+
+document.getElementById('modal').addEventListener('click',e=>{
+  if(e.target===document.getElementById('modal'))closeModal();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ─── PARTICLES ───
+const canvas=document.getElementById('particles-canvas');
+const ctx=canvas.getContext('2d');
+let particles=[],w,h;
+
+function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+window.addEventListener('resize',resize);resize();
+
+class Particle{
+  constructor(){this.reset();}
+  reset(){
+    this.x=Math.random()*w;this.y=Math.random()*h;
+    this.size=Math.random()*2+0.5;this.speedX=(Math.random()-0.5)*0.3;
+    this.speedY=(Math.random()-0.5)*0.3;this.opacity=Math.random()*0.5+0.1;
+  }
+  update(){
+    this.x+=this.speedX;this.y+=this.speedY;
+    if(this.x<0||this.x>w||this.y<0||this.y>h)this.reset();
+  }
+  draw(){
+    ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle=`rgba(99,102,241,${this.opacity})`;ctx.fill();
+  }
+}
+
+for(let i=0;i<120;i++)particles.push(new Particle());
+
+function animateParticles(){
+  ctx.clearRect(0,0,w,h);
+  particles.forEach(p=>{p.update();p.draw();});
+  // connections
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<120){
+        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(99,102,241,${0.06*(1-dist/120)})`;
+        ctx.lineWidth=0.5;ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ─── REVEAL ON SCROLL ───
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('visible');}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+renderGrid('all');
+</script>
+</body>
+</html>
