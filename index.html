@@ -249,42 +249,20 @@ nav .nav-links a:hover::after{width:100%;}
 /* ─── CONTACT ─── */
 #contacts{position:relative;z-index:1;padding:80px 0 100px;}
 .contact-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;
-  max-width:680px;margin:0 auto;padding:0 24px;
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  max-width:640px;margin:0 auto;padding:0 24px;
 }
 .contact-card{
   position:relative;display:flex;align-items:center;gap:14px;
   background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);
-  border-radius:16px;padding:20px 24px;text-decoration:none;color:#f1f5f9;
+  border-radius:16px;padding:18px 20px;text-decoration:none;color:#f1f5f9;
   font-size:15px;font-weight:600;transition:all 0.4s cubic-bezier(0.23,1,0.32,1);
-  overflow:hidden;backdrop-filter:blur(12px);
+  overflow:hidden;backdrop-filter:blur(12px);min-width:0;
 }
-.contact-card::before{
-  content:'';position:absolute;inset:0;border-radius:16px;
-  background:linear-gradient(135deg,rgba(99,102,241,0.03),rgba(255,215,0,0.02));
-  opacity:0;transition:opacity 0.4s;
-}
+.contact-card .info{display:flex;flex-direction:column;gap:2px;position:relative;z-index:1;min-width:0;overflow:hidden;}
+.contact-card .value{font-size:15px;color:#f1f5f9;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .contact-card .icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;position:relative;z-index:1;}
-.contact-card .info{display:flex;flex-direction:column;gap:2px;position:relative;z-index:1;}
 .contact-card .label{font-size:13px;color:#64748b;font-weight:500;}
-.contact-card .value{font-size:15px;color:#f1f5f9;font-weight:600;}
-.contact-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(255,215,0,0.1);
-  background:rgba(255,255,255,0.03);
-}
-.contact-card:hover::before{opacity:1;}
-.contact-card:hover .icon{transform:scale(1.05);}
-.contact-card .icon-email{background:rgba(99,102,241,0.08);color:#818cf8;}
-.contact-card:hover .icon-email{background:rgba(99,102,241,0.12);}
-.contact-card .icon-tg{background:rgba(34,197,94,0.08);color:#4ade80;}
-.contact-card:hover .icon-tg{background:rgba(34,197,94,0.12);}
-.contact-card .icon-vk{background:rgba(6,182,212,0.08);color:#22d3ee;}
-.contact-card:hover .icon-vk{background:rgba(6,182,212,0.12);}
-.contact-card .icon-gh{background:rgba(255,255,255,0.04);color:#e2e8f0;}
-.contact-card:hover .icon-gh{background:rgba(255,255,255,0.08);}
-.contact-card .icon-tgk{background:rgba(255,215,0,0.08);color:#ffd700;}
-.contact-card:hover .icon-tgk{background:rgba(255,215,0,0.12);}
 @media(max-width:500px){.contact-grid{grid-template-columns:1fr;}.contact-card{padding:16px 20px;}}
 
 /* ─── FOOTER ─── */
@@ -395,39 +373,24 @@ nav .nav-links a:hover::after{width:100%;}
   </div>
   <div class="contact-grid reveal">
     <a href="mailto:ilyagulkov25@gmail.com" class="contact-card">
-      <div class="icon icon-email">✉</div>
-      <div class="info">
-        <span class="label">Почта</span>
-        <span class="value">ilyagulkov25@gmail.com</span>
-      </div>
+      <div class="icon" style="background:rgba(99,102,241,0.1);color:#818cf8;">✉</div>
+      <div class="info"><span class="label">Почта</span><span class="value">ilyagulkov25@gmail.com</span></div>
     </a>
     <a href="https://t.me/IlyaGulkov" target="_blank" class="contact-card">
-      <div class="icon icon-tg">✈</div>
-      <div class="info">
-        <span class="label">Telegram</span>
-        <span class="value">@IlyaGulkov</span>
-      </div>
+      <div class="icon" style="background:rgba(34,197,94,0.1);color:#4ade80;">✈</div>
+      <div class="info"><span class="label">Telegram</span><span class="value">@IlyaGulkov</span></div>
     </a>
     <a href="https://vk.com/gulkovilya" target="_blank" class="contact-card">
-      <div class="icon icon-vk">VK</div>
-      <div class="info">
-        <span class="label">ВКонтакте</span>
-        <span class="value">gulkovilya</span>
-      </div>
+      <div class="icon" style="background:rgba(6,182,212,0.1);color:#22d3ee;">VK</div>
+      <div class="info"><span class="label">ВКонтакте</span><span class="value">gulkovilya</span></div>
     </a>
     <a href="https://github.com/IlyaSigma111" target="_blank" class="contact-card">
-      <div class="icon icon-gh">⌂</div>
-      <div class="info">
-        <span class="label">GitHub</span>
-        <span class="value">IlyaSigma111</span>
-      </div>
+      <div class="icon" style="background:rgba(255,255,255,0.04);color:#e2e8f0;">⌂</div>
+      <div class="info"><span class="label">GitHub</span><span class="value">IlyaSigma111</span></div>
     </a>
-    <a href="https://t.me/PhotographsLair" target="_blank" class="contact-card" style="grid-column:1/-1;">
-      <div class="icon icon-tgk">📷</div>
-      <div class="info">
-        <span class="label">ТГК «Объективно»</span>
-        <span class="value">t.me/PhotographsLair</span>
-      </div>
+    <a href="https://t.me/PhotographsLair" target="_blank" class="contact-card" style="grid-column:span 2;">
+      <div class="icon" style="background:rgba(255,215,0,0.1);color:#ffd700;">📷</div>
+      <div class="info"><span class="label">ТГК «Объективно»</span><span class="value">t.me/PhotographsLair</span></div>
     </a>
   </div>
 </section>
