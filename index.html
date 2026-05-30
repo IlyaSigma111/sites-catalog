@@ -11,6 +11,12 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;background:#07070d;color:#f1f5f9;overflow-x:hidden;}
 
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(255,215,0,0.15);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,215,0,0.3);}
+*{scrollbar-width:thin;scrollbar-color:rgba(255,215,0,0.15) transparent;}
+
 .cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:#ffd700;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,opacity 0.2s;opacity:0;box-shadow:0 0 20px rgba(255,215,0,0.3);}
 .cursor.show{opacity:1;}
 .cursor.hover{width:24px;height:24px;background:rgba(255,215,0,0.15);box-shadow:0 0 40px rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);}
@@ -265,6 +271,45 @@ nav .nav-links a:hover::after{width:100%;}
 .contact-card .label{font-size:13px;color:#64748b;font-weight:500;}
 @media(max-width:500px){.contact-grid{grid-template-columns:1fr;}.contact-card{padding:16px 20px;}}
 
+/* ─── EXAMPLES ─── */
+#examples{position:relative;z-index:1;padding:80px 0 60px;}
+.examples-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  max-width:800px;margin:0 auto;padding:0 24px;
+}
+.example-card{
+  position:relative;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);
+  border-radius:20px;overflow:hidden;transition:all 0.5s cubic-bezier(0.23,1,0.32,1);
+  cursor:pointer;backdrop-filter:blur(12px);
+}
+.example-card:hover{transform:translateY(-6px);border-color:rgba(255,215,0,0.1);}
+.example-card .thumb{
+  height:180px;display:flex;align-items:center;justify-content:center;
+  font-size:48px;font-weight:900;position:relative;overflow:hidden;
+}
+.example-card .thumb .bg{
+  position:absolute;inset:0;opacity:0.08;
+  background:linear-gradient(135deg,#ffd700,#f59e0b,#ffd700);
+  background-size:300% 300%;animation:shimmer 4s ease-in-out infinite;
+}
+.example-card:nth-child(2) .thumb .bg{background:linear-gradient(135deg,#818cf8,#6366f1,#818cf8);}
+.example-card:nth-child(3) .thumb .bg{background:linear-gradient(135deg,#4ade80,#22c55e,#4ade80);}
+.example-card:nth-child(4) .thumb .bg{background:linear-gradient(135deg,#22d3ee,#06b6d4,#22d3ee);}
+.example-card .thumb span{position:relative;z-index:1;color:#f1f5f9;font-size:20px;font-weight:800;text-align:center;padding:0 20px;}
+.example-card .body{padding:20px 24px 24px;}
+.example-card .body h3{font-size:18px;font-weight:700;margin-bottom:4px;}
+.example-card .body .desc{font-size:14px;color:#64748b;line-height:1.5;margin-bottom:12px;}
+.example-card .body .links{display:flex;gap:8px;flex-wrap:wrap;}
+.example-card .body .links a{
+  font-size:13px;font-weight:600;padding:6px 14px;border-radius:8px;text-decoration:none;
+  transition:all 0.3s;display:inline-flex;align-items:center;gap:6px;
+}
+.example-card .body .links .gh-link{background:rgba(255,255,255,0.04);color:#e2e8f0;border:1px solid rgba(255,255,255,0.06);}
+.example-card .body .links .gh-link:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,215,0,0.12);}
+.example-card .body .links .live-link{background:rgba(255,215,0,0.06);color:#ffd700;border:1px solid rgba(255,215,0,0.08);}
+.example-card .body .links .live-link:hover{background:rgba(255,215,0,0.1);}
+@media(max-width:640px){.examples-grid{grid-template-columns:1fr;}}
+
 /* ─── FOOTER ─── */
 .footer{
   text-align:center;padding:40px 20px 32px;color:#334155;font-size:14px;
@@ -305,6 +350,7 @@ nav .nav-links a:hover::after{width:100%;}
     <a href="#">Главная</a>
     <a href="#about">Обо мне</a>
     <a href="#templates">Шаблоны</a>
+    <a href="#examples">Проекты</a>
     <a href="#contacts">На связи</a>
   </div>
 </nav>
@@ -362,6 +408,69 @@ nav .nav-links a:hover::after{width:100%;}
     <button class="filter-btn" onclick="filterBy('hard')">Сложные</button>
   </div>
   <div class="bento" id="bento"></div>
+</section>
+
+<!-- EXAMPLES -->
+<section id="examples">
+  <div class="section-header reveal">
+    <div class="section-label">✦ Проекты</div>
+    <h2>Примеры работ</h2>
+    <p>Несколько проектов, которые я сделал</p>
+  </div>
+  <div class="examples-grid reveal">
+    <a href="https://github.com/IlyaSigma111/voice-monitor" target="_blank" class="example-card">
+      <div class="thumb">
+        <div class="bg"></div>
+        <span>Voice Monitor</span>
+      </div>
+      <div class="body">
+        <h3>Voice Monitor</h3>
+        <div class="desc">Десктопное приложение для мониторинга речи и обнаружения нецензурной лексики в реальном времени</div>
+        <div class="links">
+          <span class="gh-link">GitHub ↗</span>
+        </div>
+      </div>
+    </a>
+    <a href="https://github.com/IlyaSigma111/our-chat-site" target="_blank" class="example-card">
+      <div class="thumb">
+        <div class="bg"></div>
+        <span>OpenCode Chat</span>
+      </div>
+      <div class="body">
+        <h3>OpenCode Chat</h3>
+        <div class="desc">Веб-интерфейс с AI-чатом и обменом файлами. Фронтенд на чистом HTML/CSS/JS</div>
+        <div class="links">
+          <span class="gh-link">GitHub ↗</span>
+        </div>
+      </div>
+    </a>
+    <a href="https://github.com/IlyaSigma111/ilyatype" target="_blank" class="example-card">
+      <div class="thumb">
+        <div class="bg"></div>
+        <span>Ильтест</span>
+      </div>
+      <div class="body">
+        <h3>Ильтест — тест скорости печати</h3>
+        <div class="desc">Клавиатурный тренажёр с замерами скорости, точности и текстами разной сложности</div>
+        <div class="links">
+          <span class="gh-link">GitHub ↗</span>
+        </div>
+      </div>
+    </a>
+    <a href="https://github.com/IlyaSigma111/radar-landing" target="_blank" class="example-card">
+      <div class="thumb">
+        <div class="bg"></div>
+        <span>РАДАР</span>
+      </div>
+      <div class="body">
+        <h3>РАДАР — лендинг</h3>
+        <div class="desc">Промо-лендинг для мониторинга активности «Движение Первых»</div>
+        <div class="links">
+          <span class="gh-link">GitHub ↗</span>
+        </div>
+      </div>
+    </a>
+  </div>
 </section>
 
 <!-- CONTACTS -->
